@@ -1,0 +1,149 @@
+<div class="container mt-3">
+  <div class="row">
+
+  <table class="table1" style="width: 800px; height: 200px;" border="2px">
+    <thead>
+        <th class="pratibha" colspan="37" style="font-size:20px; height: 53px;">BasicInfo Details</th>
+            <tr class="pratibha">
+              <th>Id</th>
+              <th>EmpNo</th>
+              <th>Title</th>
+              <th>Initial</th>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>Last Name</th>
+              <th>Gender</th>
+              <th>DOB</th>
+              <th>Age</th>
+              <th>Office Phone</th>
+              <th>Personal Mobile</th>
+              <th>Office Mail</th>
+              <th>Personal Mail</th>
+              <th>Personal Mail2</th>
+              <th>Personal Mail3</th>
+              <th>Photo</th>
+              <th>Birth</th>
+              <th>Domicile</th>
+              <th>Religion</th>
+              <th>Caste</th>
+              <th>Nationality</th>
+              <th>Voter</th>
+              <th>Pan No</th>
+              <th>Adhar</th>
+              <th>Marital Status</th>
+              <th>Child</th>
+              <th>Marriage Date</th>
+              <th>Spouse Name</th>
+              <th>Bank Name</th>
+              <th>Account Type</th>
+              <th>Payment</th>
+              <th>Account No</th>
+              <th>Bank Details</th>
+              <th>IFSC Code</th>
+              <th>RBankNm</th>
+              <th>RAccntNo</th>
+              <th>Action</th>
+            </tr>
+
+      </thead>
+      <tbody>
+        <tr class="pratibha" *ngFor="let item of arrBasicInfo">
+          <td>{{item.Id}}</td>
+          <td>{{item.EmpNo}}</td>
+          <td>{{item.Title}}</td>
+          <td>{{item.Initial}}</td>
+          <td>{{item.FirstName}}</td>
+          <td>{{item.MiddleName}}</td>
+          <td>{{item.LastName}}</td>
+          <td>{{item.Gender}}</td>
+          <td>{{item.DOB}}</td>
+          <td>{{item.EmpAge}}</td>
+          <td>{{item.OPhone}}</td>
+          <td>{{item.PMobile}}</td>
+          <td>{{item.OMail}}</td>
+          <td>{{item.PMail}}</td>
+          <td>{{item.PMail2}}</td>
+          <td>{{item.PMail3}}</td>
+          <td>{{item.Photo}}</td>
+          <td>{{item.Birth}}</td>
+          <td>{{item.Domicile}}</td>
+          <td> {{item.Religion}}</td>
+          <td>{{item.Caste}}</td>
+          <td>{{item.Nationality}}</td>
+          <td>{{item.Voter}}</td>
+          <td>{{item.PanNo}}</td>
+          <td>{{item.Adhar}}</td>
+          <td>{{item.Status}}</td>
+          <td>{{item.Child}}</td>
+          <td>{{item.MDate}}</td>
+          <td>{{item.SName}}</td>
+          <td>{{item.BankName}}</td>
+          <td>{{item.AccntType}}</td>
+          <td>{{item.Payment}}</td>
+          <td>{{item.AccntNo}}</td>
+          <td>{{item.BankDetail}}</td>
+          <td> {{item.IFSC}}</td>
+          <td> {{item.RBankNm}}</td>
+          <td>{{item.RAccntNo}}</td>
+
+
+          <td>
+            <!-- <button (click)="OnUserDelete(item)">Delete</button>-->
+            <button (click)="OnBasicInfoEdit(item)" >Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>
+</div>
+
+
+<div class="container mt-3">
+  <div class="row">
+
+  <table class="table1" style="width: 800px; height: 200px;" border="2px">
+    <thead>
+        <th class="pratibha" colspan="11" style="font-size:20px; height: 53px;">Permanant Address Details</th>
+            <tr class="pratibha">
+              <th>Id</th>
+              <th>Permanant Add.</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>State</th>
+              <th>District</th>
+              <th>Pincode</th>
+              <th>Phone1</th>
+              <th>Phone2</th>
+              <th>Fax</th>
+              <th>Mobile</th>
+              <th>Action</th>
+            </tr>
+
+      </thead>
+      <tbody>
+        <tr class="pratibha" *ngFor="let item of arrPermanant">
+          <th>{{item.emp_id}}</th>
+          <td>{{item.permanantadd}}</td>
+          <td>{{item.city}}</td>
+          <td>{{item.country}}</td>
+          <td>{{item.state}}</td>
+          <td>{{item.district}}</td>
+          <td>{{item.pincode}}</td>
+          <td>{{item.phone1}}</td>
+          <td>{{item.phone2}}</td>
+          <td>{{item.fax}}</td>
+          <td>{{item.mobile}}</td>
+          <td>
+            <!-- <button (click)="OnUserDelete(item)">Delete</button>-->
+            <button (click)="OnPermanantEdit(item)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>
+</div>
+
+
+
