@@ -11,6 +11,7 @@ import { FormdbComponent } from './formdb/formdb.component';
 import { EditbasicinfoComponent } from './formdb/editbasicinfo/editbasicinfo.component';
 import { ShowdataComponent } from './formdb/showdata/showdata.component';
 import { EditpermanantComponent } from './formdb/editpermanant/editpermanant.component';
+import { EditpresentComponent } from './formdb/editpresent/editpresent.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { EditpermanantComponent } from './formdb/editpermanant/editpermanant.com
     FormdbComponent,
     EditbasicinfoComponent,
     ShowdataComponent,
-    EditpermanantComponent
+    EditpermanantComponent,
+    EditpresentComponent
 
   ],
   imports: [

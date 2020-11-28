@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { BasicInfo, PermanantAdd, Qualification } from './qualification';
+import { BasicInfo, PermanantAdd, Qualification, PresentAdd } from './qualification';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +56,26 @@ export class FormdbService {
     let head= new HttpHeaders().set('Content-Type','application/json');
     let body= JSON.stringify(item);
     return this._http.put(this.url2+item.emp_id, body,{headers: head});
+  }
+
+
+
+  getAllPresentAdd(){
+    return this._http.get(this.url3);
+  }
+  getAllPresentAddById(id2){
+    return this._http.get(this.url3+id2);
+  }
+  addPresentAdd(item: PresentAdd){
+    let head= new HttpHeaders().set('Content-Type','application/json');
+    let body= JSON.stringify(item);
+     console.log('Body ',body);
+    return this._http.post(this.url3,body,{headers: head});
+  }
+  updatePresentaddAdd(item: PresentAdd){
+    let head= new HttpHeaders().set('Content-Type','application/json');
+    let body= JSON.stringify(item);
+    return this._http.put(this.url3+item.emp_id, body,{headers: head});
   }
 
   addQualification(item: Qualification){

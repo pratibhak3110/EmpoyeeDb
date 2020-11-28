@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BasicInfo, PermanantAdd } from '../qualification';
+import { BasicInfo, PermanantAdd, PresentAdd } from '../qualification';
 import { FormdbService } from '../formdb.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { FormdbService } from '../formdb.service';
 export class ShowdataComponent implements OnInit {
   arrBasicInfo: BasicInfo[]=[];
   arrPermanant: PermanantAdd[]=[];
+  arrPresent: PresentAdd[]=[];
   constructor(private _router: Router,
     private _data: FormdbService) { }
 
@@ -24,6 +25,11 @@ export class ShowdataComponent implements OnInit {
         (data:PermanantAdd[])=>{
           this.arrPermanant=data;
         });
+
+      this._data.getAllPresentAdd().subscribe(
+        (data:PresentAdd[])=>{
+          this.arrPresent=data;
+         });
   }
 
   OnBasicInfoEdit(item: BasicInfo){
@@ -32,6 +38,8 @@ export class ShowdataComponent implements OnInit {
 
   OnPermanantEdit(item: PermanantAdd){
     this._router.navigate(['/editpermanant', item.emp_id])
-
+  }
+  OnPresentEdit(item: PresentAdd){
+    this._router.navigate(['/editpresent', item.emp_id])
   }
 }

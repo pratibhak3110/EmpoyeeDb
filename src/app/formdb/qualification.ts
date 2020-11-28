@@ -61,6 +61,7 @@ export class PermanantAdd{
 
    export class PresentAdd{
     public  constructor(
+      public emp_id: number,
       public presentadd: string,
       public pcity: string,
       public pcountry: string,

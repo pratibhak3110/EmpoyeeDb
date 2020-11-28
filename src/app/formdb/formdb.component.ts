@@ -19,7 +19,9 @@ export class FormdbComponent implements OnInit {
   flag5: boolean=false;
   flag6: boolean= false;
   age:number;
-
+  temp;
+  pflag: boolean = false;
+  dflag: string='';
   permanantAdd1;
   city1;
   country1;
@@ -29,6 +31,8 @@ export class FormdbComponent implements OnInit {
   phone11;
   phone21;
   fax1;
+  emp_id;
+  emp_id_param;
   personalmailId1;
   permanant: FormGroup;
 form: FormGroup;
@@ -121,7 +125,7 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
 
  this.permanant=new FormGroup({
     addressDetails:new FormGroup({
-      Id: new FormControl(),
+      emp_id: new FormControl(),
       permanantadd:new FormControl(null,[Validators.required ]),
       city: new FormControl("bengaluru",[Validators.required ]),
       country: new FormControl(),
@@ -132,9 +136,8 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
       phone2: new FormControl(),
       fax: new FormControl(),
       mobile: new FormControl(),
-      sameaddress: new  FormControl(),
+      sameaddress: new  FormControl(false),
   }),
-
    presentadd: new FormControl(),
     pcity: new FormControl("bengaluru"),
     pcountry: new FormControl(),
@@ -161,9 +164,81 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
 
 
 
+    this.permanant.get('addressDetails').get('sameaddress').valueChanges.subscribe((value)=>this.map_Add(value));
+    this.permanant.get('addressDetails').get('permanantadd').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('prrsentadd').setValue(this.permanant.get('addressDetails').get('permanantadd').value);
+        }
+      }
+    });
+    this.permanant.get('addressDetails').get('city').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('pcity').setValue(this.permanant.get('addressDetails').get('city').value);
+        }
+      }
+    });
+    this.permanant.get('addressDetails').get('country').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('pcountry').setValue(this.permanant.get('addressDetails').get('country').value);
+        }
+      }
+    });
+    this.permanant.get('addressDetails').get('state').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('pstate').setValue(this.permanant.get('addressDetails').get('state').value);
+        }
+      }
+    });
+    this.permanant.get('addressDetails').get('district').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('pdistrict').setValue(this.permanant.get('addressDetails').get('district').value);
+        }
+      }
+    });
+    this.permanant.get('addressDetails').get('pincode').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('ppincode').setValue(this.permanant.get('addressDetails').get('pincode').value);
+        }
+      }
+    });
+    this.permanant.get('addressDetails').get('phone1').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('pphone1').setValue(this.permanant.get('addressDetails').get('phone1').value);
+        }
+      }
+    });
+    this.permanant.get('addressDetails').get('phone2').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('pphone2').setValue(this.permanant.get('addressDetails').get('phone2').value);
+        }
+      }
+    });
+    this.permanant.get('addressDetails').get('fax').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('pfax').setValue(this.permanant.get('addressDetails').get('fax').value);
+        }
+      }
+    });
+    this.permanant.get('addressDetails').get('mobile').valueChanges.subscribe((value)=>{
+      if(value){
+        if(this.pflag){
+          this.permanant.get('pmobile').setValue(this.permanant.get('addressDetails').get('mobile').value);
+        }
+      }
+    });
+
     this.signupForm.get('basicInfo').get('DOB').valueChanges.subscribe((x)=>this.updateEmpAge(x));
-    this.permanant.get('addressDetails').get('sameaddress').valueChanges.subscribe((x)=> this.Accessval(x, this.permanant.get('addressDetails').value));
-    this.permanant.get('addressDetails').get('sameaddress').valueChanges.subscribe((a)=> this.edit(a));
+    // this.permanant.get('addressDetails').get('sameaddress').valueChanges.subscribe((x)=> this.Accessval(x, this.permanant.get('addressDetails').value));
+    // this.permanant.get('addressDetails').get('sameaddress').valueChanges.subscribe((a)=> this.edit(a));
   }
 
   updateEmpAge(val: Date){
@@ -176,44 +251,76 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
     this.signupForm.get('basicInfo').get('EmpAge').setValue(a);
   }
 
-  edit(d: boolean){
-    if(d==true)
-    {
-      this.permanant.get('addressDetails').valueChanges.subscribe((f)=> this.Accessval(this.permanant.get('addressDetails').get('sameaddress').value,f))
+  map_Add(value:boolean){
+    if(value){
+      this.pflag=true;
+      this.dflag='readonly';
+      this.permanant.get('presentadd').setValue(this.permanant.get('addressDetails').get('permanantadd').value);
+      this.permanant.get('pcity').setValue(this.permanant.get('addressDetails').get('city').value);
+      this.permanant.get('pcountry').setValue(this.permanant.get('addressDetails').get('country').value);
+      this.permanant.get('pstate').setValue(this.permanant.get('addressDetails').get('state').value);
+      this.permanant.get('pdistrict').setValue(this.permanant.get('addressDetails').get('district').value);
+      this.permanant.get('ppincode').setValue(this.permanant.get('addressDetails').get('pincode').value);
+      this.permanant.get('pphone1').setValue(this.permanant.get('addressDetails').get('phone1').value);
+      this.permanant.get('pphone2').setValue(this.permanant.get('addressDetails').get('phone2').value);
+      this.permanant.get('pfax').setValue(this.permanant.get('addressDetails').get('fax').value);
+      this.permanant.get('pmobile').setValue(this.permanant.get('addressDetails').get('mobile').value);
+    }
+    else{
+      this.pflag=false;
+      this.dflag='';
+      this.permanant.get('presentadd').setValue(null);
+      this.permanant.get('pcity').setValue(null);
+      this.permanant.get('pcountry').setValue(null);
+      this.permanant.get('pstate').setValue(null);
+      this.permanant.get('pdistrict').setValue(null);
+      this.permanant.get('ppincode').setValue(null);
+      this.permanant.get('pphone1').setValue(null);
+      this.permanant.get('pphone2').setValue(null);
+      this.permanant.get('pfax').setValue(null);
+      this.permanant.get('pmobile').setValue(null);
     }
   }
 
-
-  Accessval(val: boolean, val1: FormGroup){
-    if(val==true){
-
-      this. permanantAdd1=val1['permanantadd'];
-      this.city1=val1['city'];
-      this.state1=val1['state'];
-      this.country1=val1['country'];
-      this.district1=val1['district'];
-      this.pincode1=val1['pincode'];
-      this.phone21=val1['phone2'];
-      this.phone11=val1['phone1'];
-      this.fax1=val1['fax'];
-      this.personalmailId1=val1['mobile'];
-
-    }
- else{
-      this.permanantAdd1=null;
-      this.city1=null;
-      this.state1=null;
-      this.country1=null;
-      this.district1=null;
-      this.pincode1=null
-      this.phone21=null
-      this.phone11=null
-      this.fax1=null
-      this.personalmailId1=null
-      }
+//   edit(d: boolean){
+//     if(d==true)
+//     {
+//       this.permanant.get('addressDetails').valueChanges.subscribe((f)=> this.Accessval(this.permanant.get('addressDetails').get('sameaddress').value,f))
+//     }
+//   }
 
 
-  }
+//   Accessval(val: boolean, val1: FormGroup){
+//     if(val==true){
+//       this.emp_id= val1['emp_id']
+//       this. permanantAdd1=val1['permanantadd'];
+//       this.city1=val1['city'];
+//       this.state1=val1['state'];
+//       this.country1=val1['country'];
+//       this.district1=val1['district'];
+//       this.pincode1=val1['pincode'];
+//       this.phone21=val1['phone2'];
+//       this.phone11=val1['phone1'];
+//       this.fax1=val1['fax'];
+//       this.personalmailId1=val1['mobile'];
+
+//     }
+//  else{
+//    this.emp_id=null;
+//       this.permanantAdd1=null;
+//       this.city1=null;
+//       this.state1=null;
+//       this.country1=null;
+//       this.district1=null;
+//       this.pincode1=null
+//       this.phone21=null
+//       this.phone11=null
+//       this.fax1=null
+//       this.personalmailId1=null
+//       }
+
+
+//   }
 
 
 
@@ -308,23 +415,54 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
     this._router.navigate(['/editbasic',item.EmpNo]);
   }
 
+  // onSave1Click(){
+  //   if(this.permanant.get('addressDetails').status=='VALID'){
+  //     this._data.addPermanantAdd(this.permanant.get('addressDetails').value).subscribe(
+  //       (x:any)=>{
+  //          if(x.affectedValue==1){
+  //           this.arrPermanantAdd.push(this.permanant.get('addressDetails').value);
+  //    alert('Saved Successfully');
+  //     console.log('new details', this.permanant.get('addressDetails').value);
+
+  //         }else if(x.code=='ER_DUP_ENTRY'){
+  //           alert('Duplicate')
+  //         }
+
+  //       });}else{
+  //         alert('not valid')
+  //       }
+  // }
   onSave1Click(){
-    if(this.permanant.get('addressDetails').status=='VALID'){
-      this._data.addPermanantAdd(this.permanant.get('addressDetails').value).subscribe(
-        (x:any)=>{
-           if(x.affectedValue==1){
-            this.arrPermanantAdd.push(this.permanant.get('addressDetails').value);
-     alert('Saved Successfully');
-      console.log('new details', this.permanant.get('addressDetails').value);
-
-          }else if(x.code=='ER_DUP_ENTRY'){
-            alert('Duplicate')
+    console.log(this.permanant.value);
+    if(this.permanant.status=='VALID'){
+      if(this.temp==null){
+        this.permanant.get('addressDetails').get('emp_id').setValue(this.emp_id_param);
+        console.log(this.permanant.get('addressDetails').get('emp_id').value);
+        this._data.addPermanantAdd(this.permanant.value).subscribe((x:any)=>{
+          if(x.affectedRows==1){
+            alert("Added Successfully");
           }
+          else{
+            console.log(x);
+          }
+        });
+      }
+      else{
+        this._data.updatePermanantAdd(this.permanant.value).subscribe((x:any)=>{
+          if (x.affectedRows==1) {
+            alert('Updated Successfully');
+          } else {
+            console.log(x);
 
-        });}else{
-          alert('not valid')
-        }
+          }
+        });
+      }
+    }
+    else{
+      alert('Fill The Form Completely!');
+    }
   }
+
   OnSave2Click(){
     alert('Saved Successfully');
   console.log(this.form.get('qualification_details').value);
@@ -424,7 +562,6 @@ get empArray()
 
 addEmployee()
 {
-
   this.empArray.push(this.emp_group());
 }
 deleteEmployee(index){

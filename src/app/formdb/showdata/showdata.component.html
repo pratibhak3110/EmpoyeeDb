@@ -3,7 +3,7 @@
 
   <table class="table1" style="width: 800px; height: 200px;" border="2px">
     <thead>
-        <th class="pratibha" colspan="37" style="font-size:20px; height: 53px;">BasicInfo Details</th>
+        <th class="pratibha" colspan="38" style="font-size:20px; height: 53px;">BasicInfo Details</th>
             <tr class="pratibha">
               <th>Id</th>
               <th>EmpNo</th>
@@ -104,9 +104,9 @@
 
   <table class="table1" style="width: 800px; height: 200px;" border="2px">
     <thead>
-        <th class="pratibha" colspan="11" style="font-size:20px; height: 53px;">Permanant Address Details</th>
+        <th class="pratibha" colspan="12" style="font-size:20px; height: 53px;">Permanant Address Details</th>
             <tr class="pratibha">
-              <th>Id</th>
+              <th>EmpId</th>
               <th>Permanant Add.</th>
               <th>City</th>
               <th>Country</th>
@@ -144,6 +144,54 @@
 
 </div>
 </div>
+
+
+<div class="container mt-3">
+  <div class="row">
+
+  <table class="table1" style="width: 800px; height: 200px;" border="2px">
+    <thead>
+        <th class="pratibha" colspan="12" style="font-size:20px; height: 53px;">Present Address Details</th>
+            <tr class="pratibha">
+              <th>Emp Id</th>
+              <th>Present Add.</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>State</th>
+              <th>District</th>
+              <th>Pincode</th>
+              <th>Phone1</th>
+              <th>Phone2</th>
+              <th>Fax</th>
+              <th>Mobile</th>
+              <th>Action</th>
+            </tr>
+
+      </thead>
+      <tbody>
+        <tr class="pratibha" *ngFor="let item of arrPresent">
+          <th>{{item.emp_id}}</th>
+          <td>{{item.presentadd}}</td>
+          <td>{{item.pcity}}</td>
+          <td>{{item.pcountry}}</td>
+          <td>{{item.pstate}}</td>
+          <td>{{item.pdistrict}}</td>
+          <td>{{item.ppincode}}</td>
+          <td>{{item.pphone1}}</td>
+          <td>{{item.pphone2}}</td>
+          <td>{{item.pfax}}</td>
+          <td>{{item.pmobile}}</td>
+          <td>
+            <!-- <button (click)="OnUserDelete(item)">Delete</button>-->
+            <button (click)="OnPresentEdit(item)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>
+</div>
+
 
 
 
