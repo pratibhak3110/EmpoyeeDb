@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators ,FormArray, FormBuilder, FormControlName } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Employee, PermanantAdd, Qualification } from '../task/qualification';
+import { Employee, PermanantAdd, Qualification ,Skill} from './qualification';
 import { FormdbService } from "./formdb.service";
 import { BasicInfo } from "./qualification";
 
@@ -34,8 +34,17 @@ export class FormdbComponent implements OnInit {
   emp_id;
   emp_id_param;
   personalmailId1;
+
   permanant: FormGroup;
+
+  counting: number;
+  response;
+  counting1: number;
+  response1;
+  counting2: number;
+  response2;
 form: FormGroup;
+
 form1: FormGroup;
 form2: FormGroup;
 signupForm: FormGroup;
@@ -44,6 +53,7 @@ arrBasicInfo: BasicInfo[]=[];
 arrPermanantAdd: PermanantAdd[]=[];
 arrqualification: Qualification[]=[];
 arremp: Employee[]=[];
+arrskill: Skill[]=[];
 City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik","Kolhapur","Sangli"];
 
   constructor( private fb: FormBuilder,
@@ -123,9 +133,9 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
     // });
   });
 
- this.permanant=new FormGroup({
-    addressDetails:new FormGroup({
-      emp_id: new FormControl(),
+ this.permanant=new FormGroup({/*
+    addressDetails:new FormGroup({ */
+      emp_id: new FormControl(this.emp_id_param,[Validators.required ]),
       permanantadd:new FormControl(null,[Validators.required ]),
       city: new FormControl("bengaluru",[Validators.required ]),
       country: new FormControl(),
@@ -136,8 +146,8 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
       phone2: new FormControl(),
       fax: new FormControl(),
       mobile: new FormControl(),
-      sameaddress: new  FormControl(false),
-  }),
+      sameaddress: new  FormControl(false),/*
+  }), */
    presentadd: new FormControl(),
     pcity: new FormControl("bengaluru"),
     pcountry: new FormControl(),
@@ -164,81 +174,81 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
 
 
 
-    this.permanant.get('addressDetails').get('sameaddress').valueChanges.subscribe((value)=>this.map_Add(value));
-    this.permanant.get('addressDetails').get('permanantadd').valueChanges.subscribe((value)=>{
+    this.permanant.get('sameaddress').valueChanges.subscribe((value)=>this.map_Add(value));
+    this.permanant.get('permanantadd').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('prrsentadd').setValue(this.permanant.get('addressDetails').get('permanantadd').value);
+          this.permanant.get('prrsentadd').setValue(this.permanant.get('permanantadd').value);
         }
       }
     });
-    this.permanant.get('addressDetails').get('city').valueChanges.subscribe((value)=>{
+    this.permanant.get('city').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('pcity').setValue(this.permanant.get('addressDetails').get('city').value);
+          this.permanant.get('pcity').setValue(this.permanant.get('city').value);
         }
       }
     });
-    this.permanant.get('addressDetails').get('country').valueChanges.subscribe((value)=>{
+    this.permanant.get('country').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('pcountry').setValue(this.permanant.get('addressDetails').get('country').value);
+          this.permanant.get('pcountry').setValue(this.permanant.get('country').value);
         }
       }
     });
-    this.permanant.get('addressDetails').get('state').valueChanges.subscribe((value)=>{
+    this.permanant.get('state').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('pstate').setValue(this.permanant.get('addressDetails').get('state').value);
+          this.permanant.get('pstate').setValue(this.permanant.get('state').value);
         }
       }
     });
-    this.permanant.get('addressDetails').get('district').valueChanges.subscribe((value)=>{
+    this.permanant.get('district').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('pdistrict').setValue(this.permanant.get('addressDetails').get('district').value);
+          this.permanant.get('pdistrict').setValue(this.permanant.get('district').value);
         }
       }
     });
-    this.permanant.get('addressDetails').get('pincode').valueChanges.subscribe((value)=>{
+    this.permanant.get('pincode').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('ppincode').setValue(this.permanant.get('addressDetails').get('pincode').value);
+          this.permanant.get('ppincode').setValue(this.permanant.get('pincode').value);
         }
       }
     });
-    this.permanant.get('addressDetails').get('phone1').valueChanges.subscribe((value)=>{
+    this.permanant.get('phone1').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('pphone1').setValue(this.permanant.get('addressDetails').get('phone1').value);
+          this.permanant.get('pphone1').setValue(this.permanant.get('phone1').value);
         }
       }
     });
-    this.permanant.get('addressDetails').get('phone2').valueChanges.subscribe((value)=>{
+    this.permanant.get('phone2').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('pphone2').setValue(this.permanant.get('addressDetails').get('phone2').value);
+          this.permanant.get('pphone2').setValue(this.permanant.get('phone2').value);
         }
       }
     });
-    this.permanant.get('addressDetails').get('fax').valueChanges.subscribe((value)=>{
+    this.permanant.get('fax').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('pfax').setValue(this.permanant.get('addressDetails').get('fax').value);
+          this.permanant.get('pfax').setValue(this.permanant.get('fax').value);
         }
       }
     });
-    this.permanant.get('addressDetails').get('mobile').valueChanges.subscribe((value)=>{
+    this.permanant.get('mobile').valueChanges.subscribe((value)=>{
       if(value){
         if(this.pflag){
-          this.permanant.get('pmobile').setValue(this.permanant.get('addressDetails').get('mobile').value);
+          this.permanant.get('pmobile').setValue(this.permanant.get('mobile').value);
         }
       }
     });
 
     this.signupForm.get('basicInfo').get('DOB').valueChanges.subscribe((x)=>this.updateEmpAge(x));
-    // this.permanant.get('addressDetails').get('sameaddress').valueChanges.subscribe((x)=> this.Accessval(x, this.permanant.get('addressDetails').value));
-    // this.permanant.get('addressDetails').get('sameaddress').valueChanges.subscribe((a)=> this.edit(a));
+    // this.permanant.get('sameaddress').valueChanges.subscribe((x)=> this.Accessval(x, this.permanant.value));
+    // this.permanant.get('sameaddress').valueChanges.subscribe((a)=> this.edit(a));
   }
 
   updateEmpAge(val: Date){
@@ -255,16 +265,16 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
     if(value){
       this.pflag=true;
       this.dflag='readonly';
-      this.permanant.get('presentadd').setValue(this.permanant.get('addressDetails').get('permanantadd').value);
-      this.permanant.get('pcity').setValue(this.permanant.get('addressDetails').get('city').value);
-      this.permanant.get('pcountry').setValue(this.permanant.get('addressDetails').get('country').value);
-      this.permanant.get('pstate').setValue(this.permanant.get('addressDetails').get('state').value);
-      this.permanant.get('pdistrict').setValue(this.permanant.get('addressDetails').get('district').value);
-      this.permanant.get('ppincode').setValue(this.permanant.get('addressDetails').get('pincode').value);
-      this.permanant.get('pphone1').setValue(this.permanant.get('addressDetails').get('phone1').value);
-      this.permanant.get('pphone2').setValue(this.permanant.get('addressDetails').get('phone2').value);
-      this.permanant.get('pfax').setValue(this.permanant.get('addressDetails').get('fax').value);
-      this.permanant.get('pmobile').setValue(this.permanant.get('addressDetails').get('mobile').value);
+      this.permanant.get('presentadd').setValue(this.permanant.get('permanantadd').value);
+      this.permanant.get('pcity').setValue(this.permanant.get('city').value);
+      this.permanant.get('pcountry').setValue(this.permanant.get('country').value);
+      this.permanant.get('pstate').setValue(this.permanant.get('state').value);
+      this.permanant.get('pdistrict').setValue(this.permanant.get('district').value);
+      this.permanant.get('ppincode').setValue(this.permanant.get('pincode').value);
+      this.permanant.get('pphone1').setValue(this.permanant.get('phone1').value);
+      this.permanant.get('pphone2').setValue(this.permanant.get('phone2').value);
+      this.permanant.get('pfax').setValue(this.permanant.get('fax').value);
+      this.permanant.get('pmobile').setValue(this.permanant.get('mobile').value);
     }
     else{
       this.pflag=false;
@@ -285,7 +295,7 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
 //   edit(d: boolean){
 //     if(d==true)
 //     {
-//       this.permanant.get('addressDetails').valueChanges.subscribe((f)=> this.Accessval(this.permanant.get('addressDetails').get('sameaddress').value,f))
+//       this.permanant.valueChanges.subscribe((f)=> this.Accessval(this.permanant.get('sameaddress').value,f))
 //     }
 //   }
 
@@ -416,13 +426,13 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
   }
 
   // onSave1Click(){
-  //   if(this.permanant.get('addressDetails').status=='VALID'){
-  //     this._data.addPermanantAdd(this.permanant.get('addressDetails').value).subscribe(
+  //   if(this.permanant.status=='VALID'){
+  //     this._data.addPermanantAdd(this.permanant.value).subscribe(
   //       (x:any)=>{
   //          if(x.affectedValue==1){
-  //           this.arrPermanantAdd.push(this.permanant.get('addressDetails').value);
+  //           this.arrPermanantAdd.push(this.permanant.value);
   //    alert('Saved Successfully');
-  //     console.log('new details', this.permanant.get('addressDetails').value);
+  //     console.log('new details', this.permanant.value);
 
   //         }else if(x.code=='ER_DUP_ENTRY'){
   //           alert('Duplicate')
@@ -436,8 +446,8 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
     console.log(this.permanant.value);
     if(this.permanant.status=='VALID'){
       if(this.temp==null){
-        this.permanant.get('addressDetails').get('emp_id').setValue(this.emp_id_param);
-        console.log(this.permanant.get('addressDetails').get('emp_id').value);
+        //this.permanant.get('emp_id').setValue(this.emp_id_param);
+        console.log(this.permanant.get('emp_id').value);
         this._data.addPermanantAdd(this.permanant.value).subscribe((x:any)=>{
           if(x.affectedRows==1){
             alert("Added Successfully");
@@ -447,16 +457,16 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
           }
         });
       }
-      else{
-        this._data.updatePermanantAdd(this.permanant.value).subscribe((x:any)=>{
-          if (x.affectedRows==1) {
-            alert('Updated Successfully');
-          } else {
-            console.log(x);
+      // else{
+      //   this._data.updatePermanantAdd(this.permanant.value).subscribe((x:any)=>{
+      //     if (x.affectedRows==1) {
+      //       alert('Updated Successfully');
+      //     } else {
+      //       console.log(x);
 
-          }
-        });
-      }
+      //     }
+      //   });
+      // }
     }
     else{
       alert('Fill The Form Completely!');
@@ -476,6 +486,7 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
   qualification_group(){
     return this.fb.group
     ({
+      emp_id: new FormControl(),
       degree: new FormControl(null,[Validators.required]),
       institute:new FormControl (null,[Validators.required ]),
       pyear: new FormControl (null,[ Validators.required]),
@@ -487,24 +498,40 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
 
 onAddDetail(){
 
-    if(this.form.get('qualification_details').status=='VALID'){
-      this._data.addQualification(this.form.get('qualification_details').value).subscribe(
-        (x:any)=>{
-           if(x.affectedValue==1){
-            this.arrqualification.push(this.form.get('qualification_details').value);
-     alert('Saved Successfully');
-      console.log('new details', this.form.get('qualification_details').value);
+//   this.counter=0; this.res="";
 
-          }else if(x.code=='ER_DUP_ENTRY'){
-            alert('Duplicate')
-          }
+// this.form.push(this.qualification_details)
 
-        });}else{
-          alert('not valid')
-        }
-  // alert('Saved Successfully');
-  //   this.arrqualification.push(this.form.get('qualification_details').value);
-  //   console.log(this.arrqualification);
+  //   if(this.form.get('qualification_details').status=='VALID'){
+  //     this._data.addQualification(this.form.get('qualification_details').value).subscribe(
+  //       (x:any)=>{
+  //          if(x.affectedValue==1){
+  //           this.arrqualification.push(this.form.get('qualification_details').value);
+  //    alert('Saved Successfully');
+  //     console.log('new details', this.form.get('qualification_details').value);
+
+  //         }else if(x.code=='ER_DUP_ENTRY'){
+  //           alert('Duplicate')
+  //         }
+
+  //       });}else{
+  //         alert('not valid')
+  //       }
+  // // alert('Saved Successfully');
+  // //   this.arrqualification.push(this.form.get('qualification_details').value);
+  // //   console.log(this.arrqualification);
+
+  this.counting=0;
+    this.response="";
+    this.arrqualification.push(this.form.get('qualification_details').value);
+   for (var a=0;a<=(this.form.get('qualification_details').value).length-1;a++)
+   {
+this._data.addQualification(this.form.get('qualification_details').get([this.counting]).value).subscribe((x)=>{
+  alert ('Added Successfully')
+});
+this.counting++
+   }
+
   }
 
 get qualiArray()
@@ -512,10 +539,25 @@ get qualiArray()
   return<FormArray>this.form.get('qualification_details');
 }
 
-//add the qualicatin box
 addqualification()
 {
   this.qualiArray.push(this.qualification_group());
+  // if(this.form.status=='VALID'){
+  //   this._data.addQualification(this.form.value).subscribe(
+  //     (x:any)=>{
+  //       if(x.affectedValue==1){
+  //         this.arrqualification.push(this.form.value);
+  //       alert('Save Successfully');
+  //       console.log('new details', this.form.value);
+  //     }
+  //     else if(x.code=='ER_DUP_ENTRY'){
+  //       alert('Duplicate');
+  //     }
+  //     });
+  // }
+  // else{
+  //         alert('not valid');
+  //       }
 }
 
 //delete the item from Qualification table
@@ -548,10 +590,34 @@ this.qualiArray.reset(index);
 
 
 
-onAddEmp(){
-  alert('Saved Successfully');
-  this.arremp.push(this.form1.get('emp_details').value);
-  console.log(this.arremp);
+onAddEmp(): void{
+
+
+    {
+      this.counting1=0
+      this.response1="";
+      for(var i=0;i<=(this.form1.get('emp_details').value).length-1;i++)
+        {
+          {
+            this._data.addPrevEmp(this.form1.get('emp_details').get([this.counting1]).value).subscribe((x)=>
+            {
+
+              this.arremp.push(this.form1.get('emp_details').value);
+            }
+            );}
+
+          this.counting1++;
+          alert("Data Added Successfully!...");
+
+        }
+
+      }
+
+
+
+  // alert('Saved Successfully');
+  // this.arremp.push(this.form1.get('emp_details').value);
+  // console.log(this.arremp);
 }
 
 get empArray()
@@ -575,6 +641,7 @@ this.empArray.reset(index);
 
 emp_group(){
 return this.fb.group({
+  emp_id: new FormControl(),
   fromto: new FormGroup({
     fdate: new  FormControl( null, [Validators.required  ]),
     tdate: new  FormControl( null, [ Validators.required ]),
@@ -655,6 +722,7 @@ let test = myArray.filter(data => data.controls.fromto.get('fdate').value > toDa
 skill_group(){
   return this.fb.group
   ({
+    emp_id: new FormControl(),
     category: new FormControl(null,[Validators.required ]),
     skill:new FormControl (null,[ Validators.required]),
     level: new FormControl (null,[Validators.required ]),
@@ -699,8 +767,18 @@ this.skillArray.reset(i);
 
 
 SkillAdd(){
-  this.arremp.push(this.form.value);
-  console.log(this.arremp);
+  this.counting2=0;
+  this.response2="";
+  this.arrskill.push(this.form2.get('skill_details').value);
+ for (var a=0;a<=(this.form2.get('skill_details').value).length-1;a++)
+ {
+this._data.addSkill(this.form2.get('skill_details').get([this.counting]).value).subscribe((x)=>{
+alert ('Added Successfully')
+});
+this.counting++
+ }
+  // this.arremp.push(this.form.value);
+  // console.log(this.arremp);
 }
 
 

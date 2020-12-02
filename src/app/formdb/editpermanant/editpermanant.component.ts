@@ -45,7 +45,7 @@ taskId1;
         mobile: new FormControl(),
         sameaddress: new  FormControl(),
     }),
-     presentaddEdit: new FormControl(),
+     presentadd: new FormControl(),
       pcity: new FormControl("bengaluru"),
       pcountry: new FormControl(),
       pstate: new FormControl(),
@@ -78,7 +78,17 @@ taskId1;
         phone2: data[0].phone2,
         fax:data[0].fax,
         mobile: data[0].mobile,
-        sameaddress: data[0].sameaddress
+        sameaddress: data[0].sameaddress,
+        presentadd: data[0].presentadd,
+        pcity: data[0].pcity,
+        pcountry: data[0].pcountry,
+        pstate: data[0].pstate,
+        pdistrict: data[0].pdistrict,
+        ppincode: data[0].ppincode,
+        pphone1:data[0].pphone1,
+        pphone2: data[0].pphone2,
+        pfax:data[0].pfax,
+        pmobile: data[0].pmobile,
        })
       });
   }
@@ -86,10 +96,11 @@ taskId1;
   permanantedit(){
     this._data.updatePermanantAdd(this.permanant.value).subscribe(
       (x)=>{
+        console.log(this.permanant.value);
         this._router.navigate(['/show']);
       }
     )
-    console.log(this.permanant.value);
+
 
   }
 

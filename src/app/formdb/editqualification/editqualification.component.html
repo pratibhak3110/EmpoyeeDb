@@ -1,0 +1,56 @@
+    <div class="container">
+      <h1>{{taskId}}</h1>
+      <div class="col-lg-12 well">
+    <form [formGroup]="form"  (ngSubmit)="editqual()">
+      <div formArrayName="qualification_details" ><div><br></div>
+      <div *ngFor="let item of qualiArray.controls; let i=index;" [formGroupName]="i" >
+        <div class="formGroup">
+        <div class="row">
+          <div class="col-sm-2">
+            <label>Emp Id<span class="lblError">*</span></label>
+            <input type="number" class="form-control"  formControlName="emp_id">
+          </div>
+          <div class="col-sm-2">
+            <label>Qualification Degree<span class="lblError">*</span></label>
+            <input type="text" class="form-control" formControlName="degree" placeholder="Qualification Area">
+            <p class="lblError"*ngIf="item.get('degree').hasError('required') && !item.get('degree').pristine ">Qualifictaion degree is required!...</p>
+            <p class="lblError" *ngIf="item.get('degree').value!='' &&duplicatequal(item.get('degree').value, i)  && i > 0">Duplicates not Allowed!...</p>
+          </div>
+
+          <div class="col-sm-2">
+            <label>Institute<span class="lblError">*</span></label><br>
+            <input type="text" class="form-control" formControlName="institute"  placeholder="Institute name">
+            <p class="lblError"*ngIf="item.get('institute').hasError('required') && !item.get('institute').pristine ">Institute is required!...</p>
+          </div>
+
+          <div class="col-md-2">
+            <label>Passing Year<span class="lblError">*</span></label>
+            <input type="month" class="form-control"  formControlName="pyear" placeholder="Passing Year">
+            <p class="lblError"*ngIf="item.get('pyear').hasError('required') && !item.get('pyear').pristine ">Passing Year is required!...</p>
+          </div>
+
+          <div class="col-md-2">
+            <label>Score<span class="lblError">*</span></label>
+            <input type="text" class="form-control" formControlName="score" placeholder="Enter Score">
+            <p class="lblError"*ngIf="item.get('score').hasError('required') && !item.get('score').pristine ">Score is required!...</p>
+          </div>
+
+          <div class="col-md-2">
+            <label>Qualification Area<span class="lblError">*</span></label>
+            <input type="text" class="form-control" formControlName="area" placeholder="Qualification Area">
+            <p class="lblError"*ngIf="item.get('area').hasError('required') && !item.get('area').pristine ">Qualifictaion Area is required!...</p>
+          </div>
+
+        </div>
+        </div>
+      </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Edit Qualification</button>
+      </div>
+    </form>
+
+    </div>
+  </div>
+
+

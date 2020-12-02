@@ -5,24 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from "@angular/router";
 import { arrRouting } from "./app.routing";
-import { TaskComponent } from './task/task.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormdbComponent } from './formdb/formdb.component';
 import { EditbasicinfoComponent } from './formdb/editbasicinfo/editbasicinfo.component';
 import { ShowdataComponent } from './formdb/showdata/showdata.component';
 import { EditpermanantComponent } from './formdb/editpermanant/editpermanant.component';
-import { EditpresentComponent } from './formdb/editpresent/editpresent.component';
+import { EditqualificationComponent } from './formdb/editqualification/editqualification.component';
+import { EditemployementComponent } from './formdb/editemployement/editemployement.component';
+import { EditskillComponent } from './formdb/editskill/editskill.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskComponent,
     FormdbComponent,
     EditbasicinfoComponent,
     ShowdataComponent,
     EditpermanantComponent,
-    EditpresentComponent
+    EditqualificationComponent,
+    EditemployementComponent,
+    EditskillComponent,
+    HeaderComponent,
 
   ],
   imports: [

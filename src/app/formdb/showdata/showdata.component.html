@@ -1,6 +1,5 @@
-<div class="container mt-3">
-  <div class="row">
 
+  <div class="row">
   <table class="table1" style="width: 800px; height: 200px;" border="2px">
     <thead>
         <th class="pratibha" colspan="38" style="font-size:20px; height: 53px;">BasicInfo Details</th>
@@ -96,18 +95,27 @@
     </table>
 
 </div>
-</div>
 
 
-<div class="container mt-3">
+
   <div class="row">
 
   <table class="table1" style="width: 800px; height: 200px;" border="2px">
     <thead>
-        <th class="pratibha" colspan="12" style="font-size:20px; height: 53px;">Permanant Address Details</th>
+        <th class="pratibha" colspan="22" style="font-size:20px; height: 53px;">Permanant Address Details</th>
             <tr class="pratibha">
               <th>EmpId</th>
               <th>Permanant Add.</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>State</th>
+              <th>District</th>
+              <th>Pincode</th>
+              <th>Phone1</th>
+              <th>Phone2</th>
+              <th>Fax</th>
+              <th>Mobile</th>
+              <th>Present Add.</th>
               <th>City</th>
               <th>Country</th>
               <th>State</th>
@@ -134,43 +142,6 @@
           <td>{{item.phone2}}</td>
           <td>{{item.fax}}</td>
           <td>{{item.mobile}}</td>
-          <td>
-            <!-- <button (click)="OnUserDelete(item)">Delete</button>-->
-            <button (click)="OnPermanantEdit(item)">Edit</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-</div>
-</div>
-
-
-<div class="container mt-3">
-  <div class="row">
-
-  <table class="table1" style="width: 800px; height: 200px;" border="2px">
-    <thead>
-        <th class="pratibha" colspan="12" style="font-size:20px; height: 53px;">Present Address Details</th>
-            <tr class="pratibha">
-              <th>Emp Id</th>
-              <th>Present Add.</th>
-              <th>City</th>
-              <th>Country</th>
-              <th>State</th>
-              <th>District</th>
-              <th>Pincode</th>
-              <th>Phone1</th>
-              <th>Phone2</th>
-              <th>Fax</th>
-              <th>Mobile</th>
-              <th>Action</th>
-            </tr>
-
-      </thead>
-      <tbody>
-        <tr class="pratibha" *ngFor="let item of arrPresent">
-          <th>{{item.emp_id}}</th>
           <td>{{item.presentadd}}</td>
           <td>{{item.pcity}}</td>
           <td>{{item.pcountry}}</td>
@@ -183,14 +154,128 @@
           <td>{{item.pmobile}}</td>
           <td>
             <!-- <button (click)="OnUserDelete(item)">Delete</button>-->
-            <button (click)="OnPresentEdit(item)">Edit</button>
+            <button (click)="OnPermanantEdit(item)">Edit</button>
           </td>
         </tr>
       </tbody>
     </table>
 
 </div>
+
+
+
+
+  <div class="row">
+
+  <table class="table1" style="width: 800px; height: 200px;" border="2px">
+    <thead>
+        <th class="pratibha" colspan="7" style="font-size:20px; height: 53px;">Qualification Details</th>
+            <tr class="pratibha">
+              <th>Emp Id</th>
+              <th>Degree</th>
+              <th>Institute</th>
+              <th>Year</th>
+              <th>Score</th>
+              <th>Area</th>
+              <th>Action</th>
+            </tr>
+
+      </thead>
+      <tbody>
+        <tr class="pratibha" *ngFor="let item of arrQualification">
+          <th>{{item.emp_id}}</th>
+          <td>{{item.degree}}</td>
+          <td>{{item.institute}}</td>
+          <td>{{item.pyear}}</td>
+          <td>{{item.score}}</td>
+          <td>{{item.area}}</td>
+          <td>
+            <!-- <button (click)="OnUserDelete(item)">Delete</button>-->
+            <button (click)="OnQualEdit(item)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
 </div>
+
+
+
+
+  <div class="row">
+
+  <table class="table1" style="width: 800px; height: 200px;" border="2px">
+    <thead>
+        <th class="pratibha" colspan="8" style="font-size:20px; height: 53px;">Previous Employement Details</th>
+            <tr class="pratibha">
+              <th>Emp Id</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Company Name</th>
+              <th>Designation</th>
+              <th>Relevant Exp</th>
+              <th>Non-Relevant Exp</th>
+              <th>Action</th>
+            </tr>
+
+      </thead>
+      <tbody>
+        <tr class="pratibha" *ngFor="let item of arrPrevEmp">
+          <th>{{item.emp_id}}</th>
+          <td>{{item.fdate}}</td>
+          <td>{{item.tdate}}</td>
+          <td>{{item.companynm}}</td>
+          <td>{{item.designation}}</td>
+          <td>{{item.rexp}}</td>
+          <td>{{item.nrexp}}</td>
+          <td>
+
+            <button (click)="OnPrevempEdit(item)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>
+
+
+
+
+  <div class="row">
+
+  <table class="table1" style="width: 800px; height: 200px;" border="2px">
+    <thead>
+        <th class="pratibha" colspan="7" style="font-size:20px; height: 53px;">Skill Details</th>
+            <tr class="pratibha">
+              <th>Emp Id</th>
+              <th>Category</th>
+              <th>Skill</th>
+              <th>Level</th>
+              <th>Current</th>
+              <th>Experience</th>
+              <th>Action</th>
+            </tr>
+
+      </thead>
+      <tbody>
+        <tr class="pratibha" *ngFor="let item of arrSkill">
+          <th>{{item.emp_id}}</th>
+          <td>{{item.category}}</td>
+          <td>{{item.skill}}</td>
+          <td>{{item.level}}</td>
+          <td>{{item.current}}</td>
+          <td>{{item.experience}}</td>
+          <td>
+
+            <button (click)="OnSkillEdit(item)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>
+
+
 
 
 

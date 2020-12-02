@@ -54,7 +54,17 @@ export class PermanantAdd{
     public phone2: string,
     public  fax: string,
     public mobile: string,
-    public sameaddress: string
+    public sameaddress: string,
+    public presentadd: string,
+    public pcity: string,
+    public pcountry: string,
+    public  pstate: string,
+    public  pdistrict: string,
+    public  ppincode: string,
+    public  pphone1: string,
+    public pphone2: string,
+    public  pfax: string,
+    public pmobile: string
    ){}
    }
 
@@ -62,22 +72,14 @@ export class PermanantAdd{
    export class PresentAdd{
     public  constructor(
       public emp_id: number,
-      public presentadd: string,
-      public pcity: string,
-      public pcountry: string,
-      public  pstate: string,
-      public  pdistrict: string,
-      public  ppincode: string,
-      public  pphone1: string,
-      public pphone2: string,
-      public  pfax: string,
-      public pmobile: string
+
      ){}
      }
 
 
 export class Qualification{
   public  constructor(
+    public emp_id: number,
     public degree: string,
      public institute: string,
      public pyear:string,
@@ -89,6 +91,7 @@ export class Qualification{
 
    export class Employee{
      public  constructor(
+      public emp_id: number,
        public fdate: string,
        public tdate: string,
        public companynm: string,
@@ -101,6 +104,7 @@ export class Qualification{
 
       export class Skill{
        public  constructor(
+        public emp_id: number,
          public category: string,
          public skill: string,
          public level: string,

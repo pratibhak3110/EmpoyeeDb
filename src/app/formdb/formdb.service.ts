@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { BasicInfo, PermanantAdd, Qualification, PresentAdd } from './qualification';
+import { BasicInfo, PermanantAdd, Qualification, PresentAdd, Employee, Skill } from './qualification';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +49,7 @@ export class FormdbService {
     let head= new HttpHeaders().set('Content-Type','application/json');
     let body= JSON.stringify(item);
      console.log('Body ',body);
-    return this._http.post(this.url2,body,{headers: head});
+    return this._http.post<PermanantAdd>(this.url2,item,{headers: head});
   }
 
   updatePermanantAdd(item: PermanantAdd){
@@ -60,28 +60,44 @@ export class FormdbService {
 
 
 
-  getAllPresentAdd(){
-    return this._http.get(this.url3);
+
+  getAllQualification(){
+    return this._http.get(this.url4);
   }
-  getAllPresentAddById(id2){
-    return this._http.get(this.url3+id2);
-  }
-  addPresentAdd(item: PresentAdd){
-    let head= new HttpHeaders().set('Content-Type','application/json');
-    let body= JSON.stringify(item);
-     console.log('Body ',body);
-    return this._http.post(this.url3,body,{headers: head});
-  }
-  updatePresentaddAdd(item: PresentAdd){
-    let head= new HttpHeaders().set('Content-Type','application/json');
-    let body= JSON.stringify(item);
-    return this._http.put(this.url3+item.emp_id, body,{headers: head});
-  }
+
 
   addQualification(item: Qualification){
     let head= new HttpHeaders().set('Content-Type','application/json');
     let body= JSON.stringify(item);
      console.log('Body ',body);
     return this._http.post(this.url4,body,{headers: head});
+  }
+
+
+  updateQualification(item: Qualification){
+    let head= new HttpHeaders().set('Content-Type','application/json');
+    let body= JSON.stringify(item);
+    return this._http.put(this.url4+item.emp_id, body,{headers: head});
+  }
+
+  getAllPrevEmp(){
+    return this._http.get(this.url5);
+  }
+
+  addPrevEmp(item: Employee){
+    let head= new HttpHeaders().set('Content-Type','application/json');
+    let body= JSON.stringify(item);
+     console.log('Body ',body);
+    return this._http.post(this.url5,body,{headers: head});
+  }
+
+  getAllSkill(){
+    return this._http.get(this.url6);
+  }
+  addSkill(item: Skill){
+    let head= new HttpHeaders().set('Content-Type','application/json');
+    let body= JSON.stringify(item);
+     console.log('Body ',body);
+    return this._http.post(this.url6,body,{headers: head});
   }
 }

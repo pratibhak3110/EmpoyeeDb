@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BasicInfo, PermanantAdd, PresentAdd } from '../qualification';
+import { BasicInfo, PermanantAdd, PresentAdd,Qualification,Employee, Skill } from '../qualification';
 import { FormdbService } from '../formdb.service';
 
 @Component({
@@ -12,6 +12,9 @@ export class ShowdataComponent implements OnInit {
   arrBasicInfo: BasicInfo[]=[];
   arrPermanant: PermanantAdd[]=[];
   arrPresent: PresentAdd[]=[];
+  arrQualification: Qualification[]=[];
+  arrPrevEmp: Employee[]=[];
+  arrSkill:Skill[]=[];
   constructor(private _router: Router,
     private _data: FormdbService) { }
 
@@ -26,10 +29,18 @@ export class ShowdataComponent implements OnInit {
           this.arrPermanant=data;
         });
 
-      this._data.getAllPresentAdd().subscribe(
-        (data:PresentAdd[])=>{
-          this.arrPresent=data;
-         });
+         this._data.getAllQualification().subscribe(
+          (data:Qualification[])=>{
+            this.arrQualification=data;
+           });
+           this._data.getAllPrevEmp().subscribe(
+            (data:Employee[])=>{
+              this.arrPrevEmp=data;
+             });
+             this._data.getAllSkill().subscribe(
+              (data:Skill[])=>{
+                this.arrSkill=data;
+               });
   }
 
   OnBasicInfoEdit(item: BasicInfo){
@@ -37,9 +48,19 @@ export class ShowdataComponent implements OnInit {
   }
 
   OnPermanantEdit(item: PermanantAdd){
-    this._router.navigate(['/editpermanant', item.emp_id])
+    this._router.navigate(['/editpermanant', item.emp_id]);
   }
   OnPresentEdit(item: PresentAdd){
-    this._router.navigate(['/editpresent', item.emp_id])
+    this._router.navigate(['/editpresent', item.emp_id]);
+  }
+
+  OnQualEdit(item: Qualification){
+    this._router.navigate(['/editqual', item.emp_id]);
+  }
+  OnPrevempEdit(item){
+    this._router.navigate(['/editemp', item.emp_id]);
+  }
+  OnSkillEdit(item){
+    this._router.navigate(['/editskill', item.emp_id]);
   }
 }
