@@ -12,6 +12,8 @@ import {  Qualification } from '../qualification';
 export class EditqualificationComponent implements OnInit {
   form: FormGroup;
   taskId;
+  counter;
+  res;
   arrqualification: Qualification[]=[];
   constructor( private fb: FormBuilder,
     private _data: FormdbService,
@@ -20,22 +22,45 @@ export class EditqualificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.form= this.fb.group({
-      qualification_details: this.fb.array([this.qualification_group()]),
+      qualification_details: this.fb.array([]),
     });
 
+    // this.taskId=this._actroute.snapshot.params['id2'];
+    // this._data.getQualificationById(this.taskId).subscribe(
+    //   (data:Qualification[])=>{
+    //    this.form.patchValue({
+    //     emp_id:data[0].emp_id,
+    //     degree:data[0].degree,
+    //     institute:data[0].institute,
+    //     pyear:data[0].pyear,
+    //     score:data[0].score,
+    //     area: data[0].area
+    //    });
+    //   })
+
+
+
     this.taskId=this._actroute.snapshot.params['id2'];
-    this._data.getBasicInfoById(this.taskId).subscribe(
-      (data:Qualification[])=>{
-       this.form.patchValue({
-        emp_id: data[0].emp_id,
-        degree:data[0].degree,
-        institute:data[0].institute,
-        pyear:data[0].pyear,
-        score:data[0].score,
-        area: data[0].area,
+    this._data.getQualificationById(this.taskId).subscribe((x:Qualification[]) =>
+      {
+          for(let i=0; i<=x.length-1;i++)
+          {
+           const control = <FormArray>this.form.get('qualification_details');
+           control.push(this.qualification_group());
+            let item =control.at(i);
+            item.patchValue({
+              emp_id:x[i].emp_id,
+               degree:x[i].degree,
+              institute:x[i].institute,
+                pyear:x[i].pyear,
+                   score:x[i].score,
+                area: x[i].area
+           });
+          }
        });
-      })
+
   }
+
 
   qualification_group(){
     return this.fb.group
@@ -53,7 +78,7 @@ export class EditqualificationComponent implements OnInit {
 onAddDetail(){
 
   if(this.form.get('qualification_details').status=='VALID'){
-    this._data.addQualification(this.form.get('qualification_details').value).subscribe(
+    this._data.updateQualification(this.form.get('qualification_details').value).subscribe(
       (x:any)=>{
          if(x.affectedValue==1){
           this.arrqualification.push(this.form.get('qualification_details').value);
@@ -110,12 +135,33 @@ myReset(index)
 this.qualiArray.reset(index);
 }
 
-editqual(){
-  this._data.updateQualification(this.form.value).subscribe(
-    (x)=>{
-     // console.log('abc',this.basicInfoEdit.value);
-      this._router.navigate(['/show']);
-    })
-}
+// editqual(){
+//   this._data.updateQualification(this.form.get('qualification_details').value).subscribe(
+//     (x)=>{
+
+//       this._router.navigate(['/show']);
+//     });
+//     alert("data add");
+
+//     console.log('abc',this.form.get('qualification_details').value);
+// }
+
+editqual(): void
+  {
+   this.counter=0;
+   this.res="";
+
+      for(var i=0;i<=(this.form.get('qualification_details').value).length-1;i++)
+      {
+        {
+          this._data.updateQualification(this.form.get('qualification_details').get([this.counter]).value).subscribe((x)=>
+          {
+            alert("Data Edited Successfully!...");
+                this.counter++;
+          }
+          );}
+
+      }
+  }
 
 }

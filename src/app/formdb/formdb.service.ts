@@ -66,6 +66,9 @@ export class FormdbService {
   }
 
 
+  getQualificationById(id){
+    return this._http.get(this.url4+id);
+   }
   addQualification(item: Qualification){
     let head= new HttpHeaders().set('Content-Type','application/json');
     let body= JSON.stringify(item);

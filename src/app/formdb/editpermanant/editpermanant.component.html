@@ -8,7 +8,7 @@
       <div class="row">
 
 
-    <div formGroupName="PermanantAddEdit">
+    <div>
       <div>
         <label>Emp Id</label>
         <input type="number" placeholder="Enter Id" class="form-control" formControlName="emp_id">
@@ -16,7 +16,7 @@
       <div class="form-group div" style="margin-left: 5%;">
           <label>Permanant Address<span class="lblError">*</span></label>
           <textarea placeholder="Enter Address" rows="3" style="width: 130%;" formControlName="permanantadd" class="form-control adjust"></textarea>
-          <p class="lblError" *ngIf="permanant.get('PermanantAddEdit').get('permanantadd').hasError('required') && !permanant.get('PermanantAddEdit').get('permanantadd').pristine">Permanant address is required</p>
+          <p class="lblError" *ngIf="permanant.get('permanantadd').hasError('required') && !permanant.get('permanantadd').pristine">Permanant address is required</p>
       </div>
 
       <div class="row" style="margin-left: 5%;">
@@ -30,7 +30,7 @@
               <option value="pune">Pune</option>
               <option value="bengaluru">Bengaluru</option>
             </select>
-            <p *ngIf="permanant.get('PermanantAddEdit').get('city').hasError('required') && !permanant.get('PermanantAddEdit').get('city').pristine" class="lblError">
+            <p *ngIf="permanant.get('city').hasError('required') && !permanant.get('city').pristine" class="lblError">
               Please select City.</p>
         </div>
         </div>
@@ -131,7 +131,7 @@
 
       <div class="form-group div" style="margin-left: 4%;">
           <label>Present Address<span class="lblError">*</span></label>
-          <textarea placeholder="Enter Address" rows="3" style="width: 130%;"  value={{permanantAdd1}} formControlName="presentadd" class="form-control adjust"></textarea>
+          <textarea placeholder="Enter Address" rows="3" style="width: 130%;" value={{permanantAdd1}}  formControlName="presentadd" class="form-control adjust"></textarea>
           <!-- <p class="lblError" *ngIf="permanant.get('presentadd').hasError('required') && !permanant.get('presentadd').pristine">Permanant address is required</p> -->
       </div>
 
@@ -153,7 +153,7 @@
         <div class="col-sm-2">
           <div class="div">
             <label>Select Country:</label>&nbsp;
-            <select formControlName="pcountry" value={{country1}}>
+            <select formControlName="pcountry" >
               <option value="">Select...</option>
               <option value="india">India</option>
               <option value="us">US</option>
@@ -167,7 +167,7 @@
         <div class="col-sm-2">
           <div class="form-group div">
             <label>Select State:</label>&nbsp;
-            <select formControlName="pstate" value={{state1}}>
+            <select formControlName="pstate">
               <option value="">Select...</option>
               <option value="maharashtra">Maharashtra</option>
               <option value="kerala">Kerala</option>
@@ -181,7 +181,7 @@
         <div class="col-sm-2">
           <div class="form-group div">
             <label>Select District:</label>&nbsp;
-            <select formControlName="pdistrict" value={{district1}}>
+            <select formControlName="pdistrict" >
               <option value="">Select...</option>
               <option value="pune">Pune</option>
               <option value="sangli">Sangli</option>
@@ -196,33 +196,33 @@
       <div class="row">
         <div class="col-sm-3 form-group div" style="margin-left: 5%;">
           <label>Pincode</label>
-          <input type="number" placeholder="Enter pincode"style="width: 150%;" value={{pincode1}} class="form-control" formControlName="ppincode">
+          <input type="number" placeholder="Enter pincode"style="width: 150%;"  class="form-control" formControlName="ppincode">
         </div>
         &nbsp; &nbsp;
         &nbsp;  &nbsp;
 
         <div class="col-sm-3 form-group div" style="margin-left: 5%;">
           <label>Phone 1</label>
-          <input type="number" placeholder="Enter phone1"style="width: 150%;margin-left: 20%;" value={{phone11}} class="form-control" formControlName="pphone1">
+          <input type="number" placeholder="Enter phone1"style="width: 150%;margin-left: 20%;"  class="form-control" formControlName="pphone1">
         </div>
         &nbsp; &nbsp;
         &nbsp;  &nbsp;
         <div class="col-sm-3 form-group div" style="margin-left: 5%;">
           <label style="margin-left: 60%;">Phone 2</label>
-          <input type="number" placeholder="Enter phone2" style="width: 150%;margin-left: 50%;" value={{phone21}} class="form-control" formControlName="pphone2">
+          <input type="number" placeholder="Enter phone2" style="width: 150%;margin-left: 50%;" class="form-control" formControlName="pphone2">
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-4 form-group div" style="margin-left: 6%;">
           <label>Fax/Mobile</label>
-          <input type="text" placeholder="Enter fax/mobile" style="width: 150%;" value={{fax1}} class="form-control" formControlName="pfax">
+          <input type="text" placeholder="Enter fax/mobile" style="width: 150%;" class="form-control" formControlName="pfax">
         </div>
         &nbsp; &nbsp;
         &nbsp;  &nbsp;
         <div class="col-sm-4 form-group div" style="margin-left: 6%;">
           <label>Personal MailID</label>
-          <input type="email" placeholder="Enter mailid" style="width: 150%;" value={{personalmailId1}} class="form-control" formControlName="pmobile">
+          <input type="email" placeholder="Enter mailid" style="width: 150%;" class="form-control" formControlName="pmobile">
         </div>
       </div>
 </div>

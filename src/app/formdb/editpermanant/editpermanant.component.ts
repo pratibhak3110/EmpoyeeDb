@@ -31,7 +31,7 @@ taskId1;
 
   ngOnInit(): void {
     this.permanant=new FormGroup({
-      PermanantAddEdit:new FormGroup({
+
         emp_id: new FormControl(),
         permanantadd:new FormControl(null,[Validators.required ]),
         city: new FormControl("bengaluru",[Validators.required ]),
@@ -44,7 +44,6 @@ taskId1;
         fax: new FormControl(),
         mobile: new FormControl(),
         sameaddress: new  FormControl(),
-    }),
      presentadd: new FormControl(),
       pcity: new FormControl("bengaluru"),
       pcountry: new FormControl(),
@@ -57,8 +56,8 @@ taskId1;
       pmobile: new FormControl(),
     });
 
-    this.permanant.get('PermanantAddEdit').get('sameaddress').valueChanges.subscribe((x)=> this.Accessval(x, this.permanant.get('PermanantAddEdit').value));
-    this.permanant.get('PermanantAddEdit').get('sameaddress').valueChanges.subscribe((a)=> this.edit(a));
+    this.permanant.get('sameaddress').valueChanges.subscribe((x)=> this.Accessval(x, this.permanant.value));
+    this.permanant.get('sameaddress').valueChanges.subscribe((a)=> this.edit(a));
 
 
     this.taskId1=this._actrouter.snapshot.params['id1'];
@@ -66,7 +65,7 @@ taskId1;
     this._data.getAllPermanantAddById(this.taskId1).subscribe((data:PermanantAdd[])=>
     {
         console.log(data[0]);
-       this.permanant.get('PermanantAddEdit').patchValue({
+       this.permanant.patchValue({
         emp_id: data[0].emp_id,
         permanantadd: data[0].permanantadd,
         city: data[0].city,
@@ -107,17 +106,17 @@ taskId1;
   edit(d: boolean){
     if(d==true)
     {
-      this.permanant.get('PermanantAddEdit').valueChanges.subscribe((f)=> this.Accessval(this.permanant.get('PermanantAddEdit').get('sameaddress').value,f))
+      this.permanant.valueChanges.subscribe((f)=> this.Accessval(this.permanant.get('sameaddress').value,f))
     }
   }
 
   Accessval(val: boolean, val1: FormGroup){
     if(val==true){
 
-      this. permanantAdd1=val1['permanantadd'];
+      this.permanantAdd1=val1['permanantadd'];
       this.city1=val1['city'];
-      this.state1=val1['state'];
       this.country1=val1['country'];
+      this.state1=val1['state'];
       this.district1=val1['district'];
       this.pincode1=val1['pincode'];
       this.phone21=val1['phone2'];
@@ -129,8 +128,8 @@ taskId1;
  else{
       this.permanantAdd1=null;
       this.city1=null;
-      this.state1=null;
       this.country1=null;
+      this.state1=null;
       this.district1=null;
       this.pincode1=null
       this.phone21=null

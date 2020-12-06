@@ -1,5 +1,5 @@
     <div class="container">
-      <h1>{{taskId}}</h1>
+
       <div class="col-lg-12 well">
     <form [formGroup]="form"  (ngSubmit)="editqual()">
       <div formArrayName="qualification_details" ><div><br></div>
@@ -25,7 +25,7 @@
 
           <div class="col-md-2">
             <label>Passing Year<span class="lblError">*</span></label>
-            <input type="month" class="form-control"  formControlName="pyear" placeholder="Passing Year">
+            <input type="text" class="form-control"  formControlName="pyear" placeholder="Passing Year">
             <p class="lblError"*ngIf="item.get('pyear').hasError('required') && !item.get('pyear').pristine ">Passing Year is required!...</p>
           </div>
 
@@ -44,10 +44,11 @@
         </div>
         </div>
       </div>
-      </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Edit Qualification</button>
+        <button type="submit" class="btn btn-primary" >Edit Qualification</button>
       </div>
+      </div>
+
     </form>
 
     </div>
