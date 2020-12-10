@@ -103,34 +103,6 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
         RAccntNo: new FormControl(),
       }),
 
-
-    //   addressDetails: new FormGroup({
-    //     permanantadd: new FormControl(null,[]),
-    //     city: new FormControl("bengaluru",[ ]),
-    //     country: new FormControl(),
-    //     state: new FormControl(),
-    //     district: new FormControl(),
-    //     pincode: new FormControl(),
-    //     phone1: new FormControl(),
-    //     phone2: new FormControl(),
-    //     fax: new FormControl(),
-    //     mobile: new FormControl(),
-    //     sameaddress: new  FormControl(),
-    //   }),
-
-    //   presentAdd: new FormGroup({
-    //   presentadd: new FormControl(null,[]),
-    //   pcity: new FormControl("bengaluru",[ ]),
-    //   pcountry: new FormControl(),
-    //   pstate: new FormControl(),
-    //   pdistrict: new FormControl(),
-    //   ppincode: new FormControl(),
-    //   pphone1: new FormControl(),
-    //   pphone2: new FormControl(),
-    //   pfax: new FormControl(),
-    //   pmobile: new FormControl(),
-    //   }),
-    // });
   });
 
  this.permanant=new FormGroup({/*
@@ -292,48 +264,6 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
     }
   }
 
-//   edit(d: boolean){
-//     if(d==true)
-//     {
-//       this.permanant.valueChanges.subscribe((f)=> this.Accessval(this.permanant.get('sameaddress').value,f))
-//     }
-//   }
-
-
-//   Accessval(val: boolean, val1: FormGroup){
-//     if(val==true){
-//       this.emp_id= val1['emp_id']
-//       this. permanantAdd1=val1['permanantadd'];
-//       this.city1=val1['city'];
-//       this.state1=val1['state'];
-//       this.country1=val1['country'];
-//       this.district1=val1['district'];
-//       this.pincode1=val1['pincode'];
-//       this.phone21=val1['phone2'];
-//       this.phone11=val1['phone1'];
-//       this.fax1=val1['fax'];
-//       this.personalmailId1=val1['mobile'];
-
-//     }
-//  else{
-//    this.emp_id=null;
-//       this.permanantAdd1=null;
-//       this.city1=null;
-//       this.state1=null;
-//       this.country1=null;
-//       this.district1=null;
-//       this.pincode1=null
-//       this.phone21=null
-//       this.phone11=null
-//       this.fax1=null
-//       this.personalmailId1=null
-//       }
-
-
-//   }
-
-
-
   OnNext1Click(){
     this.flag= false;   //first page
     this.flag1= true;  //second page
@@ -425,23 +355,6 @@ City= ["Mumbai","Pune","Nagpur","Delhi", "Hyderabad","Chennai", "Thane","Nashik"
     this._router.navigate(['/editbasic',item.EmpNo]);
   }
 
-  // onSave1Click(){
-  //   if(this.permanant.status=='VALID'){
-  //     this._data.addPermanantAdd(this.permanant.value).subscribe(
-  //       (x:any)=>{
-  //          if(x.affectedValue==1){
-  //           this.arrPermanantAdd.push(this.permanant.value);
-  //    alert('Saved Successfully');
-  //     console.log('new details', this.permanant.value);
-
-  //         }else if(x.code=='ER_DUP_ENTRY'){
-  //           alert('Duplicate')
-  //         }
-
-  //       });}else{
-  //         alert('not valid')
-  //       }
-  // }
   onSave1Click(){
     console.log(this.permanant.value);
     if(this.permanant.status=='VALID'){
@@ -772,10 +685,10 @@ SkillAdd(){
   this.arrskill.push(this.form2.get('skill_details').value);
  for (var a=0;a<=(this.form2.get('skill_details').value).length-1;a++)
  {
-this._data.addSkill(this.form2.get('skill_details').get([this.counting]).value).subscribe((x)=>{
+this._data.addSkill(this.form2.get('skill_details').get([this.counting2]).value).subscribe((x)=>{
 alert ('Added Successfully')
 });
-this.counting++
+this.counting2++
  }
   // this.arremp.push(this.form.value);
   // console.log(this.arremp);

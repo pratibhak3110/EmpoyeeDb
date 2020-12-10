@@ -1,1 +1,54 @@
-<p>editskill works!</p>
+  <div class="container">
+    <h2>{{taskId}}</h2>
+  <div class="col-lg-12 well">
+ <form [formGroup]="form2" (ngSubmit)="editskill()" >
+    <div formArrayName="skill_details" ><div><br></div>
+    <div *ngFor="let item of skillArray.controls; let i=index;" [formGroupName]="i">
+
+      <div class="row">
+        <div class="form-group div">
+          <label>Emp Id</label>
+          <input type="number" formControlName="emp_id" class="form-control adjust">
+        </div>
+        <div class="col-xs-6 col-sm-2">
+          <label>Skill Category<span class="lblError">*</span></label>
+          <input type="text" class="form-control" formControlName="category" placeholder="Enter skill category">
+          <p class="lblError"*ngIf="item.get('category').hasError('required') && !item.get('category').pristine ">Skill category is required!...</p>
+
+        </div>
+
+        <div class="col-xs-6 col-sm-2">
+          <label>Skill<span class="lblError">*</span></label><br>
+          <input type="text" class="form-control" formControlName="skill"  placeholder="Enter skill">
+          <p class="lblError"*ngIf="item.get('skill').hasError('required') && !item.get('skill').pristine ">Skill is required!...</p>
+          <p class="lblError" *ngIf="item.get('skill').value!='' &&duplicateSkill(item.get('skill').value, i) && i > 0">Duplicates not Allowed!...</p>
+        </div>
+
+        <div class="col-xs-6 col-md-2">
+          <label>Skill Level<span class="lblError">*</span></label>
+          <input type="text" class="form-control"  formControlName="level" placeholder="Enter skill level out of 10">
+          <p class="lblError"*ngIf="item.get('level').hasError('required') && !item.get('level').pristine ">Skill level is required!...</p>
+        </div>
+
+        <div class="col-xs-6 col-md-2">
+          <label>IS Current?<span class="lblError">*</span></label>
+          <input type="text" class="form-control" formControlName="current" placeholder="Yes/No">
+          <p class="lblError"*ngIf="item.get('current').hasError('required') && !item.get('current').pristine ">Required field...</p>
+        </div>
+
+        <div class="col-xs-6 col-md-2">
+          <label>Experience<span class="lblError">*</span></label>
+          <input type="number" class="form-control" formControlName="experience" placeholder="Enter skill experience">
+          <p class="lblError"*ngIf="item.get('experience').hasError('required') && !item.get('experience').pristine ">Experience is required!...</p>
+        </div>
+      </div>
+      <div>
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" >Edit Skill</button>
+    </div>
+  </form>
+  </div>
+  </div>

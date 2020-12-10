@@ -79,6 +79,7 @@ export class PermanantAdd{
 
 export class Qualification{
   public  constructor(
+    public Id:number,
     public emp_id: number,
     public degree: string,
      public institute: string,
@@ -91,6 +92,7 @@ export class Qualification{
 
    export class Employee{
      public  constructor(
+      public Id:number,
       public emp_id: number,
        public fdate: string,
        public tdate: string,
@@ -104,6 +106,7 @@ export class Qualification{
 
       export class Skill{
        public  constructor(
+        public Id:number,
         public emp_id: number,
          public category: string,
          public skill: string,

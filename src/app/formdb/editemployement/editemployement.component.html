@@ -1,1 +1,75 @@
-<p>editemployement works!</p>
+
+  <div class="container">
+
+    <div class="col-lg-12 well">
+
+
+  <form [formGroup]="form1"  (ngSubmit)="editemp()" >
+
+    <div formArrayName="emp_details" ><div><br></div>
+    <div *ngFor="let item of empArray.controls; let i=index;" [formGroupName]="i" >
+
+      <div class="row">
+        <div class="form-group div">
+          <label>Emp Id</label>
+          <input type="number" formControlName="emp_id" class="form-control adjust">
+        </div> &nbsp;&nbsp;&nbsp;
+       <div formGroupName="fromto">
+         <div class="row">
+        <div class="col-xs-6 col-sm-6">
+          <label>From Date<span class="lblError">*</span></label>
+          <input type="date" class="form-control" formControlName="fdate" placeholder="Enter From Date">
+          <p class="lblError"*ngIf="item.get('fromto').get('fdate').hasError('required') && !item.get('fromto').get('fdate').pristine "class="text-danger">From Date is required!...</p>
+          <p class="lblError" *ngIf="Duplicate(item.get('fromto').get('fdate').value, i) && i > 0" class="text-danger">Overlapping not Allowed!...</p>
+          <p class="lblError" *ngIf="Duplicate1(item.get('fromto').get('fdate').value, i) && i > 0" class="text-danger">Duplicate not Allowed!...</p>
+        </div>
+
+        <div class="col-xs-6 col-sm-6">
+          <label>To Date<span class="lblError">*</span></label><br>
+          <input type="date" class="form-control" formControlName="tdate"  placeholder="To Date name">
+          <p class="lblError"*ngIf="item.get('fromto').get('tdate').hasError('required') && !item.get('fromto').get('tdate').pristine ">To Date is required!...</p>
+          <p class="lblError"*ngIf="item.get('fromto').hasError('dates') && !item.get('fromto').pristine ">From Date should be less than To Date!...</p>
+       </div>
+       </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <label>Company Name<span class="lblError">*</span></label>
+          <input type="text" class="form-control"  formControlName="companynm" placeholder="Company name">
+          <p class="lblError"*ngIf="item.get('companynm').hasError('required') && !item.get('companynm').pristine ">Company Name is required!...</p>
+        </div>
+
+        <div class="col-xs-6 col-md-2">
+          <label>Designation<span class="lblError">*</span></label>
+          <input type="text" class="form-control" formControlName="designation" placeholder="Enter designation">
+          <p class="lblError"*ngIf="item.get('designation').hasError('required') && !item.get('designation').pristine ">Designation is required!...</p>
+        </div>
+
+        <div class="col-xs-6 col-md-1">
+          <label>Relevant<span class="lblError">*</span></label>
+          <input type="text" class="form-control" formControlName="rexp" placeholder="yy/mm">
+          <p class="lblError"*ngIf="item.get('rexp').hasError('required') && !item.get('rexp').pristine ">Relevant is required!...</p>
+        </div>
+
+        <div class="col-xs-6 col-md-1">
+          <label>NonRel<span class="lblError">*</span></label>
+          <input type="text" class="form-control" formControlName="nrexp" placeholder="yy/mm ">
+          <p class="lblError"*ngIf="item.get('nrexp').hasError('required') && !item.get('nrexp').pristine ">Non Relevant is required!...</p>
+        </div>
+        <div>
+          <br>
+          <!-- <button type="button"class="btn btn-danger"(click)="deleteEmployee(i)" >Delete</button> -->
+        </div>
+      </div>
+      <div>
+
+    </div>
+    </div>
+    </div>
+<br><br>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" >Edit Skill</button>
+    </div>
+
+  </form>
+  </div>
+  </div>

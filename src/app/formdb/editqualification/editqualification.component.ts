@@ -49,6 +49,7 @@ export class EditqualificationComponent implements OnInit {
            control.push(this.qualification_group());
             let item =control.at(i);
             item.patchValue({
+              Id:x[i].Id,
               emp_id:x[i].emp_id,
                degree:x[i].degree,
               institute:x[i].institute,
@@ -65,6 +66,7 @@ export class EditqualificationComponent implements OnInit {
   qualification_group(){
     return this.fb.group
     ({
+      Id:new FormControl(),
       emp_id: new FormControl(),
       degree: new FormControl(null,[Validators.required]),
       institute:new FormControl (null,[Validators.required ]),
@@ -135,33 +137,16 @@ myReset(index)
 this.qualiArray.reset(index);
 }
 
-// editqual(){
-//   this._data.updateQualification(this.form.get('qualification_details').value).subscribe(
-//     (x)=>{
+editqual(){
+  let r = this.form.get('qualification_details') as FormArray;
+  let item = r.at(0);
+  this._data.updateQualification(item.value).subscribe(
+    (x)=>{
+     // console.log("abc");
+      console.log(item.value);
+      this._router.navigate(['/show']);
+   });
+}
 
-//       this._router.navigate(['/show']);
-//     });
-//     alert("data add");
-
-//     console.log('abc',this.form.get('qualification_details').value);
-// }
-
-editqual(): void
-  {
-   this.counter=0;
-   this.res="";
-
-      for(var i=0;i<=(this.form.get('qualification_details').value).length-1;i++)
-      {
-        {
-          this._data.updateQualification(this.form.get('qualification_details').get([this.counter]).value).subscribe((x)=>
-          {
-            alert("Data Edited Successfully!...");
-                this.counter++;
-          }
-          );}
-
-      }
-  }
 
 }
