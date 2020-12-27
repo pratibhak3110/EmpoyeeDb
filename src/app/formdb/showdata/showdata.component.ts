@@ -63,4 +63,14 @@ export class ShowdataComponent implements OnInit {
   OnSkillEdit(item){
     this._router.navigate(['/editskill', item.emp_id]);
   }
+
+
+
+  OnBasicInfoDelete(item: BasicInfo){
+    this._data.deleteBasicInfo(item.emp_id).subscribe((x:any)=>
+    {
+      this.arrBasicInfo.splice(this.arrBasicInfo.indexOf(item), 1);
+      this._router.navigate(['/show']);
+    });
+  }
 }

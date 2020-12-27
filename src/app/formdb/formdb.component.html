@@ -9,7 +9,12 @@
 
         <form style="text-align: center; margin-left: 5%;" [formGroup]="signupForm"  (ngSubmit)="OnSaveClick()">
           <div class="col-sm-12">
-
+            <div class="col-sm-6 form-group div" formGroupName="basicInfo">
+              <label>Id<span class="lblError">*</span></label>
+              <div class="controls">
+              <input type="number" placeholder="Enter employee id" class="form-control" formControlName="emp_id">
+            </div>
+            </div>
           <div class="row">
             <div class="col-sm-6 form-group div" formGroupName="basicInfo">
               <label>Emp No<span class="lblError">*</span></label>
@@ -289,248 +294,6 @@
     </div>
   </div>
   </div>
-
-
-
-<!--
-  <div *ngIf="flag1">
-
-    <form style="text-align: center;" [formGroup]="signupForm" (ngSubmit)="onSave1Click()">
-      <div class="container">
-      <h1 class="well div" style="text-align: center;">Permanant Address Details</h1>
-      <div class="col-lg-12 well">
-        <h6 class="div"><span class="lblError">*</span>indicates the fields are mandatory.</h6>
-        <div class="row">
-      <div formGroupName="addressDetails">
-        <div class="form-group div" style="margin-left: 5%;">
-            <label>Permanant Address<span class="lblError">*</span></label>
-            <textarea placeholder="Enter Address" rows="3" style="width: 130%;" formControlName="permanantadd" class="form-control adjust"></textarea>
-            <p class="lblError" *ngIf="signupForm.get('permanantadd').hasError('required') && !signupForm.get('permanantadd').pristine">Permanant address is required</p>
-        </div>
-
-        <div class="row" style="margin-left: 5%;">
-          <div class="col-sm-2">
-          <div class="form-group div">
-            <label>Select City: <span class="lblError">*</span></label>&nbsp;
-              <select formControlName="city">
-                <option value="">Select...</option>
-                <option value="hyderabad">Hyderabad</option>
-                <option value="chennai">Chennai</option>
-                <option value="pune">Pune</option>
-                <option value="bengaluru">Bengaluru</option>
-              </select>
-              <p *ngIf="signupForm.get('city').hasError('required') && !signupForm.get('city').pristine" class="lblError">
-                Please select City.</p>
-          </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="div">
-              <label>Select Country:</label>&nbsp;
-              <select formControlName="country">
-                <option value="">Select...</option>
-                <option value="india">India</option>
-                <option value="us">US</option>
-                <option value="usa">USA</option>
-                <option value="dubai">Dubai</option>
-                <option value="brazil">Brazil</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-sm-2">
-            <div class="form-group div">
-              <label>Select State:</label>&nbsp;
-              <select formControlName="state">
-                <option value="">Select...</option>
-                <option value="maharashtra">Maharashtra</option>
-                <option value="kerala">Kerala</option>
-                <option value="mp">MP</option>
-                <option value="delhi">Delhi</option>
-                <option value="panjab">Panjab</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-sm-2">
-            <div class="form-group div">
-              <label>Select District:</label>&nbsp;
-              <select formControlName="district">
-                <option value="">Select...</option>
-                <option value="pune">Pune</option>
-                <option value="sangli">Sangli</option>
-                <option value="kolhapur">Kolhapur</option>
-                <option value="amravati">Amravati</option>
-                <option value="nashik">Nashik</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-3 form-group div" style="margin-left: 5%;">
-            <label>Pincode</label>
-            <input type="number" placeholder="Enter pincode" style="width: 150%;" class="form-control" formControlName="pincode">
-          </div>
-          &nbsp; &nbsp;
-          &nbsp;  &nbsp;
-          <div class="col-sm-3 form-group div" style="margin-left: 5%;">
-            <label>Phone 1</label>
-            <input type="number" placeholder="Enter phone1" style="width: 150%;margin-left: 20%;" class="form-control" formControlName="phone1">
-          </div>
-          &nbsp; &nbsp;
-          &nbsp;  &nbsp;
-
-          <div class="col-sm-3 form-group div" style="margin-left: 5%;">
-            <label style="margin-left: 60%;">Phone 2</label>
-            <input type="number" placeholder="Enter phone2" style="width: 150%; margin-left: 50%;" class="form-control" formControlName="phone2">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-4 form-group div" style="margin-left: 5%;">
-            <label>Fax/Mobile</label>
-            <input type="text" placeholder="Enter fax/mobile" class="form-control" formControlName="fax">
-          </div>
-
-          <div class="col-sm-4 form-group div" style="margin-left: 5%;">
-            <label>Personal MailID</label>
-            <input type="email" placeholder="Enter mailid" class="form-control" formControlName="mobile">
-          </div>
-        </div>
-
-        <div class="form-group col-md-4" style="margin-left: 5%;">
-          <input type="checkbox" formControlName="sameaddress" (click)="onclick()">&nbsp;<label for="inputEmail4">Same as Present Address<span class="lblError">*</span></label>
-        </div>
-        <button class="btn btn-primary" type="submit"> Save Details</button>
-
-    </div>
-  </div>
-  </div>
-</div>
-</form>
-
-
-    <form style="text-align: center;" [formGroup]="signupForm" (ngSubmit)="onSave2Click()">
-    <div class="container">
-
-    <h1 class="well div" style="text-align: center;">Present Address Details</h1>
-
-    <div class="col-lg-12 well">
-
-      <div class="row">
-        <div formGroupName="presentAdd">
-        <div class="form-group div" style="margin-left: 4%;">
-            <label>Present Address<span class="lblError">*</span></label>
-            <textarea placeholder="Enter Address" rows="3" style="width: 500%;"  value={{permanantAdd1}} formControlName="presentadd" class="form-control adjust"></textarea>
-            <p class="lblError" *ngIf="signupForm.get('presentAdd').get('presentadd').hasError('required') && !signupForm.get('presentAdd').get('presentadd').pristine">Permanant address is required</p>
-        </div>
-
-        <div class="row"style="margin-left: 5%;">
-          <div class="col-sm-2">
-          <div class="form-group div">
-            <label>Select City: <span class="lblError">*</span></label>&nbsp;
-              <select formControlName="pcity" value={{city1}} >
-                <option value="">Select...</option>
-                <option value="hyderabad">Hyderabad</option>
-                <option value="chennai">Chennai</option>
-                <option value="pune">Pune</option>
-                <option value="bengaluru">Bengaluru</option>
-              </select>
-              <p *ngIf="signupForm.get('presentAdd').get('pcity').hasError('required') && !signupForm.get('presentAdd').get('pcity').pristine" class="lblError">
-                Please select City.</p>
-          </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="div">
-              <label>Select Country:</label>&nbsp;
-              <select formControlName="pcountry" value={{country1}}>
-                <option value="">Select...</option>
-                <option value="india">India</option>
-                <option value="us">US</option>
-                <option value="usa">USA</option>
-                <option value="dubai">Dubai</option>
-                <option value="brazil">Brazil</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-sm-2">
-            <div class="form-group div">
-              <label>Select State:</label>&nbsp;
-              <select formControlName="pstate" value={{state1}}>
-                <option value="">Select...</option>
-                <option value="maharashtra">Maharashtra</option>
-                <option value="kerala">Kerala</option>
-                <option value="mp">MP</option>
-                <option value="delhi">Delhi</option>
-                <option value="panjab">Panjab</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-sm-2">
-            <div class="form-group div">
-              <label>Select District:</label>&nbsp;
-              <select formControlName="pdistrict" value={{district1}}>
-                <option value="">Select...</option>
-                <option value="pune">Pune</option>
-                <option value="sangli">Sangli</option>
-                <option value="kolhapur">Kolhapur</option>
-                <option value="amravati">Amravati</option>
-                <option value="nashik">Nashik</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-3 form-group div" style="margin-left: 5%;">
-            <label>Pincode</label>
-            <input type="number" placeholder="Enter pincode"style="width: 150%;" value={{pincode1}} class="form-control" formControlName="ppincode">
-          </div>
-          &nbsp; &nbsp;
-          &nbsp;  &nbsp;
-
-          <div class="col-sm-3 form-group div" style="margin-left: 5%;">
-            <label>Phone 1</label>
-            <input type="number" placeholder="Enter phone1"style="width: 150%;margin-left: 20%;" value={{phone11}} class="form-control" formControlName="pphone1">
-          </div>
-          &nbsp; &nbsp;
-          &nbsp;  &nbsp;
-          <div class="col-sm-3 form-group div" style="margin-left: 5%;">
-            <label style="margin-left: 60%;">Phone 2</label>
-            <input type="number" placeholder="Enter phone2" style="width: 150%;margin-left: 50%;" value={{phone21}} class="form-control" formControlName="pphone2">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-4 form-group div" style="margin-left: 6%;">
-            <label>Fax/Mobile</label>
-            <input type="text" placeholder="Enter fax/mobile" style="width: 150%;" value={{fax1}} class="form-control" formControlName="pfax">
-          </div>
-          &nbsp; &nbsp;
-          &nbsp;  &nbsp;
-          <div class="col-sm-4 form-group div" style="margin-left: 6%;">
-            <label>Personal MailID</label>
-            <input type="email" placeholder="Enter mailid" style="width: 150%;" value={{personalmailId1}} class="form-control" formControlName="pmobile">
-          </div>
-        </div>
-
-
-    <div class="container mt-3">
-      <div class="row" style="margin-left: 10%;">
-        <button class="btn btn-primary" (click)="OnPrevious2Click()">Previous</button> &nbsp;&nbsp;
-        <button class="btn btn-primary" type="submit"> Save Details</button> &nbsp;&nbsp;
-        <button  class="btn btn-warning" (click)="OnNext2Click()">Next</button>
-      </div>
-    </div>
-  </div>
-  </div>
-  </div>
-</div>
-</form>
-  </div>
- -->
 
 
 
@@ -859,24 +622,25 @@
             <label>Emp Id</label>
             <input type="number" formControlName="emp_id" class="form-control adjust">
           </div>
-         <div formGroupName="fromto">
+         <!-- <div formGroupName="fromto"> -->
            <div class="row">
           <div class="col-xs-6 col-sm-6">
             <label>From Date<span class="lblError">*</span></label>
             <input type="date" class="form-control" formControlName="fdate" placeholder="Enter From Date">
-            <p class="lblError"*ngIf="item.get('fromto').get('fdate').hasError('required') && !item.get('fromto').get('fdate').pristine "class="text-danger">From Date is required!...</p>
-            <p class="lblError" *ngIf="Duplicate(item.get('fromto').get('fdate').value, i) && i > 0" class="text-danger">Overlapping not Allowed!...</p>
-            <p class="lblError" *ngIf="Duplicate1(item.get('fromto').get('fdate').value, i) && i > 0" class="text-danger">Duplicate not Allowed!...</p>
+            <p class="lblError"*ngIf="item.get('fdate').hasError('required') && !item.get('fdate').pristine "class="text-danger">From Date is required!...</p>
+            <p class="lblError" *ngIf="Duplicate(item.get('fdate').value, i) && i > 0" class="text-danger">Overlapping not Allowed!...</p>
+            <p class="lblError" *ngIf="Duplicate1(item.get('fdate').value, i) && i > 0" class="text-danger">Duplicate not Allowed!...</p>
           </div>
 
           <div class="col-xs-6 col-sm-6">
             <label>To Date<span class="lblError">*</span></label><br>
             <input type="date" class="form-control" formControlName="tdate"  placeholder="To Date name">
-            <p class="lblError"*ngIf="item.get('fromto').get('tdate').hasError('required') && !item.get('fromto').get('tdate').pristine ">To Date is required!...</p>
-            <p class="lblError"*ngIf="item.get('fromto').hasError('dates') && !item.get('fromto').pristine ">From Date should be less than To Date!...</p>
+            <p class="lblError"*ngIf="item.get('tdate').hasError('required') && !item.get('tdate').pristine ">To Date is required!...</p>
+            <p class="lblError"*ngIf="item.hasError('dates') && !item.pristine ">From Date should be less than To Date!...</p>
+
          </div>
          </div>
-          </div>
+          <!-- </div> -->
           <div class="col-xs-6 col-md-2">
             <label>Company Name<span class="lblError">*</span></label>
             <input type="text" class="form-control"  formControlName="companynm" placeholder="Company name">

@@ -1,6 +1,7 @@
 export class BasicInfo{
   public constructor(
     public Id: number,
+    public emp_id: number,
     public EmpNo: string,
     public Title : string,
     public Initial: string,

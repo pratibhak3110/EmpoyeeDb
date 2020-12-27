@@ -18,7 +18,7 @@ age;
 
   ngOnInit(): void {
     this.basicInfoEdit= new FormGroup({
-      Id: new FormControl(),
+      emp_id: new FormControl(),
        EmpNo: new FormControl(' ',[Validators.required]),
         Title: new FormControl(' ',[Validators.required]),
         Initial: new FormControl(),
@@ -64,7 +64,7 @@ age;
     this._data.getBasicInfoById(this.taskID).subscribe(
       (data:BasicInfo[])=>{
        this.basicInfoEdit.patchValue({
-        Id: data[0].Id,
+        emp_id: data[0].emp_id,
         EmpNo:data[0].EmpNo,
         Title:data[0].Title,
         Initial:data[0].Initial,

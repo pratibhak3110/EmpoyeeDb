@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators ,FormArray, FormBuilder, FormControlName } from '@angular/forms';
+import { FormControl, FormGroup, AbstractControl, Validators ,FormArray, FormBuilder, FormControlName } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormdbService } from "../formdb.service";
 import { Employee } from '../qualification';
@@ -14,6 +14,7 @@ export class EditemployementComponent implements OnInit {
   counting1: number;
   response1;
   taskId;
+  test; les;
   arremp: Employee[]=[];
 
   constructor( private fb: FormBuilder,
@@ -104,82 +105,80 @@ this.empArray.reset(index);
 }
 
 emp_group(){
-return this.fb.group({
-Id: new FormControl(),
-emp_id: new FormControl(),
-fromto: new FormGroup({
-  fdate: new  FormControl( null, [Validators.required  ]),
-  tdate: new  FormControl( null, [ Validators.required ]),
-},
-[this.fromToDate('fdate', 'tdate').bind(this)]
-),
-companynm:new FormControl(null,[ Validators.required]),
-designation:new FormControl(null,[ Validators.required]),
-rexp: new FormControl(null,[Validators.required ]),
-nrexp: new FormControl(null,[Validators.required ])
-})
-}
+  return this.fb.group({
+    Id: new FormControl,
+    emp_id: new FormControl(),
+    // fromto: new FormGroup({
+      fdate: new  FormControl( null, [Validators.required  ]),
+      tdate: new  FormControl( null, [ Validators.required ]),
+  // },
+    // [this.fromToDate('fdate', 'tdate').bind(this)]
+  // ),
+    companynm:new FormControl(null,[ Validators.required]),
+    designation:new FormControl(null,[ Validators.required]),
+    rexp: new FormControl(null,[Validators.required ]),
+    nrexp: new FormControl(null,[Validators.required ])
+  })
+  }
 
-fromToDate(fromDate: string, toDate: string)
-{
-return (group: FormGroup): {[key: string]: any} => {
-let f = group.controls[fromDate];
-let t = group.controls[toDate];
-if (f.value > t.value) {
-  return {
-    dates: "Date from should be less than Date to"
-  };
-}
-return {};
-}
-}
-timeCalculation(val: Date){
-let myArray = this.dategroup(this.form1);
-var fyear= new Date(val).getFullYear();
-var today=new Date();
-var tyear=new Date(today).getFullYear();
-var a=tyear-fyear;
-console.log(a);
-}
+  fromToDate(fdate: string, tdate: string)
+  {
+  return (group: FormGroup): {[key: string]: any} => {
+    let f = group.controls[fdate];
+    let t = group.controls[tdate];
+    if (f.value > t.value) {
+      return {
+        dates: "Date from should be less than Date to"
+      };
+    }
+    return {};
+  }
+  }
+  timeCalculation(val: Date){
+    let myArray = this.getang(this.form1);
+    var fyear= new Date(val).getFullYear();
+    var today=new Date();
+    var tyear=new Date(today).getFullYear();
+    var a=tyear-fyear;
+    console.log(a);
+    }
 
-dategroup(form):Array<any>{
-return form.controls.emp_details.controls;
-}
+
 
 //get details from employee
 getang(form): Array<any> {
-return form.controls.emp_details.controls;
-}
-
-Duplicate(fromDate, toDate): boolean {
-let myArray = this.dategroup(this.form1);
-let test = myArray.filter(data => data.controls.fromto.get('tdate').value >= fromDate && fromDate != null)
-if (test.length > 1) {
-return true;
-} else {
-return false
-}
-}
-
-Duplicate1(fromDate): boolean {
-let myArray = this.dategroup(this.form1);
-let test = myArray.filter(data => data.controls.fromto.get('fdate').value == fromDate && fromDate != null)
-if (test.length > 1) {
-return true;
-} else {
-return false
-}
-}
-
-fromToDateValidation(fromDate, toDate): boolean {
-let myArray = this.dategroup(this.form1);
-let test = myArray.filter(data => data.controls.fromto.get('fdate').value > toDate && toDate != null)
- // the fromDate and toDate are numbers. In not convert them first after null check
-  if (test !== null ) {
-      return true;
+  return form.controls.emp_details.controls;
   }
-  return false;
-};
+  Duplicate(fromDate): boolean {
+    let myArray = this.getang(this.form1);
+    let test = myArray.filter(data => data.controls.tdate.value >= fromDate && fromDate != null)
+    if (test.length > 1) {
+      return true;
+    } else {
+      return false
+    }
+    }
+
+    Duplicate1(fromDate): boolean {
+    let myArray = this.getang(this.form1);
+    let test = myArray.filter(data => data.controls.fdate.value == fromDate && fromDate != null)
+    if (test.length > 1) {
+      return true;
+    } else {
+      return false
+    }
+    }
+
+    fromToDateValidation(control: AbstractControl):{ [key:string]:boolean} {
+    let myArray = this.getang(this.form1);
+    let test = myArray.filter(data => data.get('fdate').value );
+    let les= myArray.filter(data => data.get('tdate').value);
+       // the fromDate and toDate are numbers. In not convert them first after null check
+        if (this.test >this.les) {
+            return {lessDate: true};
+        }
+        return null;
+    };
 
 editemp(){
   let r = this.form1.get('emp_details') as FormArray;

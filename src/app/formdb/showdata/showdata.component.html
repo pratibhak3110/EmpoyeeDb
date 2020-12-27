@@ -4,7 +4,7 @@
     <thead>
         <th class="pratibha" colspan="38" style="font-size:20px; height: 53px;">BasicInfo Details</th>
             <tr class="pratibha">
-              <th>Id</th>
+              <th>EmpId</th>
               <th>EmpNo</th>
               <th>Title</th>
               <th>Initial</th>
@@ -47,7 +47,7 @@
       </thead>
       <tbody>
         <tr class="pratibha" *ngFor="let item of arrBasicInfo">
-          <td>{{item.Id}}</td>
+          <td>{{item.emp_id}}</td>
           <td>{{item.EmpNo}}</td>
           <td>{{item.Title}}</td>
           <td>{{item.Initial}}</td>
@@ -89,6 +89,7 @@
           <td>
             <!-- <button (click)="OnUserDelete(item)">Delete</button>-->
             <button (click)="OnBasicInfoEdit(item)" >Edit</button>
+            <button (click)="OnBasicInfoDelete(item)" >Delete</button>
           </td>
         </tr>
       </tbody>

@@ -14,24 +14,24 @@
           <label>Emp Id</label>
           <input type="number" formControlName="emp_id" class="form-control adjust">
         </div> &nbsp;&nbsp;&nbsp;
-       <div formGroupName="fromto">
+       <!-- <div formGroupName="fromto"> -->
          <div class="row">
         <div class="col-xs-6 col-sm-6">
           <label>From Date<span class="lblError">*</span></label>
-          <input type="date" class="form-control" formControlName="fdate" placeholder="Enter From Date">
-          <p class="lblError"*ngIf="item.get('fromto').get('fdate').hasError('required') && !item.get('fromto').get('fdate').pristine "class="text-danger">From Date is required!...</p>
-          <p class="lblError" *ngIf="Duplicate(item.get('fromto').get('fdate').value, i) && i > 0" class="text-danger">Overlapping not Allowed!...</p>
-          <p class="lblError" *ngIf="Duplicate1(item.get('fromto').get('fdate').value, i) && i > 0" class="text-danger">Duplicate not Allowed!...</p>
+          <input type="text" class="form-control" formControlName="fdate" placeholder="Enter From Date">
+          <p class="lblError"*ngIf="item.get('fdate').hasError('required') && !item.get('fdate').pristine "class="text-danger">From Date is required!...</p>
+          <p class="lblError" *ngIf="Duplicate(item.get('fdate').value, i) && i > 0" class="text-danger">Overlapping not Allowed!...</p>
+          <p class="lblError" *ngIf="Duplicate1(item.get('fdate').value, i) && i > 0" class="text-danger">Duplicate not Allowed!...</p>
         </div>
 
         <div class="col-xs-6 col-sm-6">
           <label>To Date<span class="lblError">*</span></label><br>
-          <input type="date" class="form-control" formControlName="tdate"  placeholder="To Date name">
-          <p class="lblError"*ngIf="item.get('fromto').get('tdate').hasError('required') && !item.get('fromto').get('tdate').pristine ">To Date is required!...</p>
-          <p class="lblError"*ngIf="item.get('fromto').hasError('dates') && !item.get('fromto').pristine ">From Date should be less than To Date!...</p>
+          <input type="text" class="form-control" formControlName="tdate"  placeholder="To Date name">
+          <p class="lblError"*ngIf="item.get('tdate').hasError('required') && !item.get('tdate').pristine ">To Date is required!...</p>
+          <p class="lblError"*ngIf="item.hasError('dates') && !item.pristine ">From Date should be less than To Date!...</p>
        </div>
        </div>
-        </div>
+        <!-- </div> -->
         <div class="col-xs-6 col-md-2">
           <label>Company Name<span class="lblError">*</span></label>
           <input type="text" class="form-control"  formControlName="companynm" placeholder="Company name">
